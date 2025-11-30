@@ -12,3 +12,10 @@ document.addEventListener('mousemove', function(e){
     glow.style.transform = `translate(-50%,-50%) translate(${dx*10}px, ${dy*10}px)`;
   }
 });
+
+function copyCA() {
+    navigator.clipboard.writeText(
+        document.getElementById("ca-text").textContent
+    );
+    alert("Contract copied!");
+}
