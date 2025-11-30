@@ -1,235 +1,65 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HAZARD • Dark Power on Solana</title>
-<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Cinzel+Decorative:wght@900&display=swap" rel="stylesheet">
-<style>
-    :root{--gold:#D4AF37;--blood:#8B0000;--bone:#f5f5f5}
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{background:#000;color:var(--bone);font-family:'Creepster',cursive;overflow-x:hidden;cursor:none;height:100vh}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HAZARD – Dark Power Memecoin on Solana. No roadmap. No promises. Only danger.">
+    <title>HAZARD • Dark Power on Solana</title>
     
-    /* Blood Rain */
-    .drop{position:fixed;top:-50px;width:10px;height:50px;background:var(--blood);border-radius:50% 50% 50% /60% 60% 40% 40%;pointer-events:none;opacity:.85;animation:fall linear infinite;box-shadow:0 0 15px #ff0000}
-    @keyframes fall{0%{transform:translateY(-100vh) rotate(0)}100%{transform:translateY(110vh) rotate(720deg)}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@900&family=Creepster&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
     
-    /* Ghost Skulls */
-    .ghost{position:fixed;width:90px;opacity:0;pointer-events:none;animation:ghost 18s linear infinite;filter:drop-shadow(0 0 20px var(--blood))}
-    @keyframes ghost{0%{opacity:0;transform:translate(-150px,110vh) rotate(0)}20%{opacity:.55}80%{opacity:.55}100%{opacity:0;transform:translate(calc(100vw + 150px),-150px) rotate(1080deg)}}
-    
-    /* Pulsing Runes */
-    .runes{position:absolute;width:440px;height:440px;top:50%;left:50%;transform:translate(-50%,-50%);border:4px solid var(--gold);border-radius:50%;box-shadow:0 0 90px var(--blood);animation:spin 20s linear infinite;pointer-events:none;z-index:4}
-    .runes::before{content:'';position:absolute;inset:40px;border:3px dashed var(--gold);border-radius:50%;animation:spin 12s linear reverse infinite}
-    @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-    
-    .hero{height:100vh;background:url('images/banner.JPEG') center/cover;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
-    .logo-big{width:300px;filter:drop-shadow(0 0 60px var(--gold));animation:float 7s ease-in-out infinite;z-index:5}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-40px)}}
-    .eyes{position:absolute;top:108px;width:32px;height:22px;background:#ff0040;border-radius:50%;box-shadow:0 0 50px #ff0000;animation:pulseEyes 2.5s infinite}
-    .eyes::before,.eyes::after{content:'';position:absolute;width:100%;height:100%;background:inherit;border-radius:50%;box-shadow:inherit}
-    .eyes::before{left:-48px}.eyes::after{left:48px}
-    @keyframes pulseEyes{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
-    
-    h1{font-family:'Cinzel Decorative',cursive;font-size:8rem;color:var(--gold);text-shadow:0 0 60px var(--blood);animation:titleGlow 5s infinite alternate}
-    @keyframes titleGlow{from{text-shadow:0 0 60px var(--blood)}to{text-shadow:0 0 120px #ff0000}}
-    .typewriter{font-size:2.2rem;color:var(--blood);white-space:nowrap;overflow:hidden;border-right:5px solid var(--gold);width:0;animation:typing 7s steps(44) infinite,blink .8s infinite}
-    @keyframes typing{0%{width:0}45%{width:44ch}100%{width:0}}
-    @keyframes blink{50%{border-color:transparent}}
-    
-    /* Mouse Trail */
-    #trail,#smoketrail{position:fixed;width:24px;height:24px;pointer-events:none;z-index:999;transform:translate(-50%,-50%);border-radius:50%}
-    #trail{background:var(--gold);mix-blend-mode:screen;box-shadow:0 0 20px var(--gold)}
-    #smoketrail{background:var(--blood);opacity:.3;filter:blur(12px)}
-    
-    section{padding:120px 20px;text-align:center;position:relative;z-index:10;background:rgba(0,0,0,0.7)}
-    h2{font-size:4.5rem;color:var(--gold);text-shadow:0 0 40px var(--blood);margin-bottom:60px}
-    
-    .ca-section{background:#0a0000;padding:50px;border:3px double var(--gold);max-width:900px;margin:40px auto}
-    #ca-address{font-family:monospace;font-size:1.4rem;background:#000;padding:20px;border:2px solid var(--blood)}
-    button{background:var(--blood);color:var(--gold);border:4px solid var(--gold);padding:15px 40px;font-size:1.5rem;cursor:pointer;margin-top:20px}
-    button:hover{background:var(--gold);color:#000}
-    
-    .listings{display:flex;justify-content:center;flex-wrap:wrap;gap:50px;margin-top:80px}
-    .listing-item img{width:100px;filter:drop-shadow(0 0 20px var(--gold))}
-
-    .footer{background:#000;padding:40px;text-align:center;border-top:3px solid var(--gold)}
-    .social-links a{color:var(--gold);margin:0 15px;font-size:1.3rem;text-decoration:none}
-</style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Blood Rain (40 Tropfen) -->
-<script>
-for(let i=0;i<40;i++){
-    let d=document.createElement('div');d.className='drop';
-    d.style.left=Math.random()*100+'vw';
-    d.style.animationDuration=(6+Math.random()*10)+'s';
-    d.style.animationDelay=Math.random()*5+'s';
-    document.body.appendChild(d);
-}
-</script>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="runes"></div>
+        <img src="images/logo.JPEG" alt="HAZARD Skull" class="logo-big">
+        <h1>HAZARD</h1>
+        <div class="subtitle">POWERED BY THE DARK POWER ON SOLANA</div>
+    </section>
 
-<!-- Ghost Skulls -->
-<script>
-setInterval(()=>{let g=document.createElement('img');g.src='images/skull.JPEG';g.className='ghost';
-    g.style.left=(Math.random()*40-10)+'%';
-    g.style.animationDuration=(15+Math.random()*20)+'s';
-    g.style.animationDelay=Math.random()*3+'s';
-    document.body.appendChild(g);
-    setTimeout(()=>g.remove(),40000);
-},3500);
-</script>
+    <!-- Lore -->
+    <section class="section">
+        <h2>THE DARK POWER AWAKENS</h2>
+        <img src="images/skull.JPEG" alt="Skull" class="skull-float">
+        <p class="lore-text">
+            Keine Roadmaps. Keine falschen Versprechen.<br>
+            Nur purer, dunkler Thrill auf Solana.<br>
+            Wenn du das Risiko liebst – willkommen im Schatten.
+        </p>
+    </section>
 
-<!-- Mouse Trail -->
-<div id="trail"></div><div id="smoketrail"></div>
-<script>
-document.addEventListener('mousemove',e=>{document.getElementById('trail').style.left=e.clientX+'px';document.getElementById('trail').style.top=e.clientY+'px';
-    document.getElementById('smoketrail').style.left=e.clientX+'px';document.getElementById('smoketrail').style.top=e.clientY+'px';
-});
-</script>
-
-<!-- Hero -->
-<section class="hero">
-    <div class="runes"></div>
-    <img src="images/logo.JPEG" class="logo-big">
-    <div class="eyes"></div>
-    <h1>HAZARD</h1>
-    <div class="typewriter">Powered by the Dark Power on Solana</div>
-</section>
-
-<!-- About -->
-<section id="about">
-    <h2>DARK POWER AWAKENS</h2>
-    <img src="images/skull.JPEG" style="width:220px;border-radius:50%;margin:30px;">
-    <p style="max-width:800px;margin:0 auto;font-size:1.3rem;">
-        HAZARD brings danger, mystery, and adrenaline back to the crypto world.<br>
-        Keine Versprechen. Keine Roadmaps. Nur purer, dunkler Thrill auf Solana.<br>
-        Wenn du das Risiko liebst – willkommen im Schatten.
-    </p>
-</section>
-
-<!-- Hazard Wheel -->
-<section id="wheel-section" style="background:#0a0a0a;">
-    <h2>THE HAZARD WHEEL</h2>
-    <p>Dreh das Rad der Unterwelt – was wird das Schicksal dir geben?</p>
-    <div id="wheel-container">
-        <img id="wheel" src="https://i.ibb.co/Hnd7VwK/hazard-wheel.png" alt="Hazard Wheel">
-        <div id="spin-btn">SPIN</div>
-    </div>
-    <div id="wheel-result">Klick SPIN …</div>
-    <audio id="spin-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3"></audio>
-    <audio id="win-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3"></audio>
-</section>
-
-<!-- Dark Power Map -->
-<section id="map">
-    <h2>DIE DARK POWER KARTE</h2>
-    <p>Klicke auf die Regionen – der Nebel lichtet sich und enthüllt die Legende von HAZARD</p>
-    <div id="map-container">
-        <div class="region" style="top:15%; left:12%; width:180px;" data-title="Graveyard of Rugpulls" data-text="Hier ruhen die Seelen gefallener Coins. HAZARD tanzt auf ihren Gräbern.">
-            ? Nebel ?
+    <!-- Hazard Wheel -->
+    <section class="section wheel-bg">
+        <h2>THE HAZARD WHEEL</h2>
+        <p class="wheel-subtitle">Dreh das Rad der Unterwelt – wenn du dich traust…</p>
+        <div class="wheel-container">
+            <img src="https://i.ibb.co/Hnd7VwK/hazard-wheel.png" alt="Wheel" id="wheel">
+            <button id="spin-btn>SPIN TO HELL</button>
         </div>
-        <div class="region" style="top:35%; left:65%; width:200px;" data-title="Casino Infernale" data-text="Das Rad dreht sich ewig. Einmal drin, gibt es kein Zurück.">
-            ? Nebel ?
+        <div id="wheel-result">Klick SPIN …</div>
+    </section>
+
+    <!-- Contract Address -->
+    <section class="section ca-section">
+        <h2>CONTRACT ADDRESS</h2>
+        <div id="ca-address">DEINE_CA_HIER_EINFÜGEN</div>
+        <button id="copy-btn">COPY CA</button>
+    </section>
+
+    <!-- Footer + Socials -->
+    <footer>
+        <p>© 2025 HAZARD – All Rights Reserved</p>
+        <div class="socials">
+            <a href="https://x.com/HAZARD_Solana" target="_blank">X</a>
+            <a href="https://t.me/hazardcoinofficial" target="_blank">Telegram</a>
+            <a href="https://dexscreener.com/solana/DEINE_CA" target="_blank">Chart</a>
         </div>
-        <div class="region" style="top:60%; left:20%; width:190px;" data-title="Solana Shadows" data-text="Schnell, dunkel, tödlich – die Heimat des Dark Powers.">
-            ? Nebel ?
-        </div>
-        <div class="region" style="top:55%; left:55%; width:210px;" data-title="Vault of Lost Lambos" data-text="Die Lambos der 2021-Bullenmarkt-Opfer warten auf neue Besitzer.">
-            ? Nebel ?
-        </div>
-        <div class="region" style="top:20%; left:40%; width:170px;" data-title="Throne of Hazard" data-text="Der Sitz des einen wahren Skelett-Königs.">
-            ? Nebel ?
-        </div>
-    </div>
-</section>
+    </footer>
 
-<!-- CA Section -->
-<section class="ca-section">
-    <h2>CONTRACT ADDRESS</h2>
-    <div id="ca-address">DEINE_ECHTE_CA_HIER_EINFÜGEN</div>
-    <button id="copy-btn">COPY CA</button>
-</section>
-
-<!-- Listings Section -->
-<section class="listings">
-    <div class="listing-item">
-        <img src="https://raydium.io/logo.png" alt="Raydium"><p>Raydium</p>
-    </div>
-    <div class="listing-item">
-        <img src="https://jup.ag/logo.svg" alt="Jupiter"><p>Jupiter</p>
-    </div>
-    <div class="listing-item">
-        <img src="https://dexscreener.com/favicon.ico" alt="Dexscreener"><p>Dexscreener</p>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-    <p>© 2025 HAZARD – Powered by the Dark Power on Solana</p>
-    <div class="social-links">
-        <a href="https://x.com/HAZARD_Solana" target="_blank">X</a> |
-        <a href="https://t.me/hazardcoinofficial" target="_blank">Telegram</a> |
-        <a href="https://dexscreener.com/solana/DEINCA" target="_blank">Chart</a>
-    </div>
-</footer>
-
-<script>
-    // COPY CA
-    document.getElementById('copy-btn').onclick = () => {
-        navigator.clipboard.writeText(document.getElementById('ca-address').textContent);
-        alert('CA kopiert!');
-    };
-
-    // HAZARD WHEEL
-    const wheel = document.getElementById('wheel');
-    const spinBtn = document.getElementById('spin-btn');
-    const resultText = document.getElementById('wheel-result');
-    const spinSound = document.getElementById('spin-sound');
-    const winSound = document.getElementById('win-sound');
-
-    const outcomes = [
-        "10x incoming – das Schicksal liebt dich",
-        "Rugpull dodged – du bist schneller als der Teufel",
-        "Du hast gerade einen Lambo gewonnen… in der Hölle",
-        "Jeet und du wirst für immer verflucht",
-        "Dark Power fließt durch dich – HODL",
-        "Das Rad lacht über Paperhands",
-        "Du wirst reich… oder pleite. 50/50",
-        "Hazard grinst – du bist genau richtig hier",
-        "Deine Frau verlässt dich, aber dein Bag 100x’t",
-        "Weniger reden, mehr kaufen",
-        "Der Skelettkönig nickt anerkennend",
-        "WELCOME TO THE DARK SIDE"
-    ];
-
-    let spinning = false;
-    spinBtn.addEventListener('click', () => {
-        if (spinning) return;
-        spinning = true;
-        spinSound.currentTime = 0; spinSound.play();
-
-        const spins = 5 + Math.floor(Math.random() * 5);
-        const deg = spins * 360 + Math.floor(Math.random() * 360);
-        wheel.style.transform = `rotate(${deg}deg)`;
-
-        setTimeout(() => {
-            const index = (Math.floor((deg % 360) / 30)) % 12;
-            resultText.textContent = outcomes[index];
-            winSound.play();
-            spinning = false;
-        }, 5200);
-    });
-
-    // DARK POWER MAP
-    document.querySelectorAll('.region').forEach(region => {
-        region.addEventListener('click', () => {
-            if (region.classList.contains('revealed')) return;
-            region.classList.add('revealed');
-            region.innerHTML = `<strong>${region.dataset.title}</strong><br><br>${region.dataset.text}`;
-        });
-    });
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
