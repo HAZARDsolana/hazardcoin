@@ -84,3 +84,60 @@ body{
   .lead{font-size:16px}
   .content{padding:6px}
 }
+
+/* ========== RESPONSIVE FIX ========== */
+html, body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* ========== ANIMATED CONTRACT BOX ========== */
+.ca-container {
+    margin: 20px auto 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ca-box {
+    font-family: monospace;
+    background: #000;
+    color: #fff;
+    padding: 15px 25px;
+    border: 3px solid #D7B375;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    animation: caGlow 3s infinite alternate;
+}
+
+@keyframes caGlow {
+    0% { border-color: #D7B375; box-shadow: 0 0 12px #D7B375; }
+    50% { border-color: #8B0000; box-shadow: 0 0 14px #8B0000; }
+    100% { border-color: #F5F5F5; box-shadow: 0 0 12px #F5F5F5; }
+}
+
+/* ========== COPY BUTTON ========== */
+.ca-copy-btn {
+    margin-top: 10px;
+    padding: 10px 24px;
+    background: #8B0000;
+    color: #D7B375;
+    border: 2px solid #D7B375;
+    cursor: pointer;
+    font-size: 1rem;
+    animation: pulseCopy 3s infinite;
+}
+
+@keyframes pulseCopy {
+    0% { background:#8B0000; color:#D7B375; }
+    50% { background:#D7B375; color:#000; }
+    100% { background:#8B0000; color:#fff; }
+}
+
+/* ========== TEXT IMPROVEMENT ========== */
+.lead.bigger {
+    font-size: 1.2rem;
+    line-height: 150%;
+    margin-bottom: 18px;
+}
