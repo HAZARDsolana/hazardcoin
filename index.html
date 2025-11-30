@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HAZARD – Dark Power on Solana</title>
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ------------------------- BASIC STYLES ------------------------- */
+body {
+    margin: 0;
+    background: #000;
+    color: #d7b375;
+    font-family: "Cinzel", serif;
+    overflow-x: hidden;
+}
+
+/* Smooth fade-in animation */
+.fade-in {
+    animation: fadeIn 2s ease forwards;
+    opacity: 0;
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* ------------------------- HERO SECTION ------------------------- */
+.hero {
+    position: relative;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow: hidden;
+}
+
+/* Placeholder logo circle */
+.logo-placeholder {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #2a0000, #000);
+    border: 2px solid #8a0000;
+    box-shadow: 0 0 25px #8a0000;
+}
+
+/* Title */
+.hero h1 {
+    font-size: 4rem;
+    letter-spacing: 5px;
+    margin: 10px 0 5px;
+    text-shadow: 0 0 12px #8a0000;
+}
+
+/* Tagline */
+.hero p {
+    font-size: 1.4rem;
+    opacity: 0.9;
+}
+
+/* Glowing smoke animation background (CSS fog) */
+.smoke-bg {
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: url("assets/images/smoke.jpg") center/cover no-repeat;
+    opacity: 0.22;
+    filter: blur(5px);
+    animation: smokeMove 18s ease-in-out infinite alternate;
+}
+@keyframes smokeMove {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-40px) scale(1.05); }
+}
+
+/* ------------------------- BUTTONS ------------------------- */
+.buttons {
+    margin-top: 30px;
+}
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    margin: 8px;
+    border: 1px solid #d7b375;
+    color: #d7b375;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: 0.2s ease;
+    border-radius: 4px;
+}
+.btn:hover {
+    background: #d7b375;
+    color: black;
+    box-shadow: 0 0 12px #d7b375;
+}
+
+/* ------------------------- CONTRACT BOX ------------------------- */
+.contract-box {
+    margin: 80px auto;
+    width: 90%;
+    max-width: 900px;
+    padding: 25px;
+    border: 1px solid #d7b375;
+    border-radius: 6px;
+    background: rgba(20, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+}
+.contract-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.contract-address {
+    font-size: 1.1rem;
+    word-wrap: break-word;
+    margin-bottom: 15px;
+}
+.copy-btn {
+    padding: 10px 20px;
+    border: 1px solid #d7b375;
+    color: #d7b375;
+    background: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.copy-btn:hover {
+    background: #d7b375;
+    color: black;
+}
+
+/* ------------------------- SECTIONS ------------------------- */
+.section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 80px auto;
+    text-align: center;
+}
+.section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px #8a0000;
+}
+.section p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    opacity: 0.85;
+}
+
+/* ------------------------- FEATURES ------------------------- */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+.feature-box {
+    width: 280px;
+    padding: 25px;
+    border: 1px solid #d7b375;
+    border-radius: 6px;
+    background: rgba(40, 0, 0, 0.3);
+    transition: 0.3s;
+}
+.feature-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 18px #8a0000;
+}
+
+/* ------------------------- FOOTER ------------------------- */
+footer {
+    text-align: center;
+    padding: 30px;
+    opacity: 0.6;
+    font-size: 0.9rem;
+}
+
+</style>
+</head>
+<body>
+
+<!-- SMOKE BACKGROUND -->
+<div class="smoke-bg"></div>
+
+<!-- HERO -->
+<section class="hero fade-in">
+    <div class="logo-placeholder"></div>
+
+    <h1>HAZARD</h1>
+    <p>Powered by the Dark Power on Solana 🖤💀</p>
+
+    <div class="buttons">
+        <a class="btn" href="#">Copy CA</a>
+        <a class="btn" href="#">Buy</a>
+        <a class="btn" href="#">Chart</a>
+    </div>
+</section>
+
+<!-- CONTRACT ADDRESS -->
+<div class="contract-box fade-in">
+    <div class="contract-title">Contract Address</div>
+    <div class="contract-address" id="ca">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+    <button class="copy-btn" onclick="copyCA()">Copy</button>
+</div>
+
+<!-- WHAT IS HAZARD -->
+<section class="section fade-in">
+    <h2>What is HAZARD?</h2>
+    <p>
+        HAZARD brings back danger, mystery and adrenaline to crypto.
+        No promises. No safety. Only the dark game of chance.
+        <br><br>
+        Enter only if you trust your own decisions.
+    </p>
+</section>
+
+<!-- FEATURES -->
+<section class="section fade-in">
+    <h2>The Dark Forces</h2>
+    <div class="features">
+        <div class="feature-box">⚡ Chaos Engine</div>
+        <div class="feature-box">💀 Dark Community</div>
+        <div class="feature-box">🕯️ Mystery Power</div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    HAZARD © 2025 — Embrace the Dark Power
+</footer>
+
+<script>
+/* Copy CA Function */
+function copyCA() {
+    const ca = document.getElementById("ca").innerText;
+    navigator.clipboard.writeText(ca);
+    alert("Contract Address copied!");
+}
+</script>
+
+</body>
+</html>
