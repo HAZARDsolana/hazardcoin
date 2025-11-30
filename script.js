@@ -1,46 +1,51 @@
-// 100vh Fix für Mobile
+// 100vh Fix
 const setVh = () => {
   document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
 };
 setVh();
 window.addEventListener('resize', setVh);
 
-// Copy-Funktion – extra robust mit Fallback
+// Universal Copy-Funktion (für CA + alle Text-Boxen)
 document.addEventListener('DOMContentLoaded', () => {
-  const copyBtn   = document.getElementById('copyBtn');
-  const caText    = document.getElementById('caText');
-  const copiedMsg = document.querySelector('.ca-copied');
+  // Contract Address
+  const caBtn = document.getElementById('copyBtn');
+  const caText = document.getElementById('caText');
+  const caMsg = document.querySelector('.ca-copied');
 
-  if (!copyBtn || !caText) return; // Sicherheit
+  // Alle normalen Text-Copy-Buttons
+  document.querySelectorAll('.text-copy').forEach(btn => {
+    const box = btn.closest('.text-box');
+    const text = box.querySelector('.text-content').innerText;
+    const msg = box.querySelector('.text-copied');
 
-  copyBtn.addEventListener('click', async () => {
-    const textToCopy = caText.textContent.trim();
-
-    try {
-      // Moderne Variante (funktioniert überall mit HTTPS)
-      await navigator.clipboard.writeText(textToCopy);
-      showFeedback();
-    } catch (err) {
-      // Fallback für ältere Browser oder lokale Tests
-      const textarea = document.createElement('textarea');
-      textarea.value = textToCopy;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.focus();
-      textarea.select();
-      try {
-        document.execCommand('copy');
-        showFeedback();
-      } catch (e) {
-        alert('Kopieren nicht möglich – bitte manuell markieren & Strg+C / Cmd+C');
-      }
-      document.body.removeChild(textarea);
-    }
+    btn.addEventListener('click', () => copyToClipboard(text, msg));
   });
 
-  function showFeedback() {
-    copiedMsg.classList.add('show');
-    setTimeout(() => copiedMsg.classList.remove('show'), 2000);
+  if (caBtn && caText) {
+    caBtn.addEventListener('click', () => copyToClipboard(caText.textContent.trim(), caMsg));
+  }
+
+  async function copyToClipboard(text, feedbackElement) {
+    try {
+      await navigator.clipboard.writeText(text);
+      showFeedback(feedbackElement);
+    } catch (err) {
+      // Fallback
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed'; textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      showFeedback(feedbackElement);
+    }
+  }
+
+  function showFeedback(el) {
+    if (el) {
+      el.classList.add('show');
+      setTimeout(() => el.classList.remove('show'), 2200);
+    }
   }
 });
