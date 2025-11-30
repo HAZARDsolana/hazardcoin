@@ -1,14 +1,56 @@
 // Blood Rain
-for(let i=0;i<40;i++){let d=document.createElement('div');d.className='drop';d.style.left=Math.random()*100+'vw';d.style.animationDuration=(6+Math.random()*10)+'s';d.style.animationDelay=Math.random()*5+'s';document.body.appendChild(d);console.log('Blood Rain Tropfen '+i+' erstellt');}
+for(let i=0;i<45;i++){
+  let d=document.createElement('div');
+  d.className='drop';
+  d.style.left=Math.random()*100+'vw';
+  d.style.animationDuration=(5+Math.random()*8)+'s';
+  d.style.animationDelay=Math.random()*5+'s';
+  document.body.appendChild(d);
+}
 
 // Ghost Skulls
-setInterval(()=>{let g=document.createElement('img');g.src='images/skull.JPEG';g.onload=()=>console.log('Skull geladen');g.onerror=()=>console.log('Skull nicht gefunden – Fallback verwendet');g.className='ghost';g.style.left=(Math.random()*40-10)+'%';g.style.animationDuration=(15+Math.random()*20)+'s';g.style.animationDelay=Math.random()*3+'s';document.body.appendChild(g);setTimeout(()=>g.remove(),40000);},3500);
+setInterval(()=>{
+  let g=document.createElement('img');
+  g.src='images/skull.JPEG';
+  g.className='ghost';
+  g.style.left=(Math.random()*60-20)+'%';
+  g.style.animationDuration=(14+Math.random()*16)+'s';
+  document.body.appendChild(g);
+  setTimeout(()=>g.remove(),45000);
+},3000);
 
 // Mouse Trail
-let trail=document.createElement('div');trail.id='trail';document.body.appendChild(trail);let smoke=document.createElement('div');smoke.id='smoketrail';document.body.appendChild(smoke);document.addEventListener('mousemove',e=>{trail.style.left=e.clientX+'px';trail.style.top=e.clientY+'px';smoke.style.left=e.clientX+'px';smoke.style.top=e.clientY+'px';});console.log('Mouse Trail aktiviert');
+const trail=document.createElement('div');trail.id='trail';document.body.appendChild(trail);
+const smoke=document.createElement('div');smoke.id='smoketrail';document.body.appendChild(smoke);
+document.addEventListener('mousemove',e=>{
+  trail.style.left=e.clientX+'px';trail.style.top=e.clientY+'px';
+  smoke.style.left=e.clientX+'px';smoke.style.top=e.clientY+'px';
+});
 
 // Copy CA
-document.getElementById('copy-btn').onclick=()=>{navigator.clipboard.writeText(document.getElementById('ca-address').textContent);alert('CA kopiert!');console.log('CA kopiert');};
+document.getElementById('copy-btn').onclick=()=>{
+  navigator.clipboard.writeText(document.getElementById('ca-address').textContent);
+  alert('CA kopiert!');
+};
 
-// Hazard Wheel
-const wheel=document.getElementById('wheel'),spinBtn=document.getElementById('spin-btn'),result=document.getElementById('wheel-result'),outcomes=["10x incoming","Rugpull dodged","Lambo in Hölle","Jeet verflucht","Dark Power HODL","Paperhands lachen","50/50 reich/pleite","Hazard grinst","Bag 100x't","Mehr kaufen","Skelettkönig nickt","DARK SIDE"];let spinning=false;spinBtn.addEventListener('click',()=>{if(spinning)return;spinning=true;console.log('Wheel spin gestartet');const deg=(5+Math.random()*5)*360+Math.random()*360;wheel.style.transform=`rotate(${deg}deg)`;setTimeout(()=>{const index=Math.floor(deg/30)%12;result.textContent=outcomes[index];spinning=false;console.log('Wheel spin beendet: '+outcomes[index]);},5000);});console.log('Wheel und Scripts geladen');
+// Wheel
+const wheel=document.getElementById('wheel');
+const spinBtn=document.getElementById('spin-btn');
+const result=document.getElementById('wheel-result');
+const outcomes=[
+  "10x incoming","Rugpull dodged","Lambo in der Hölle","Jeet = Verdammnis",
+  "Dark Power HODL","Paperhands verbrennen","50/50 reich oder pleite",
+  "Hazard grinst","Bag 100x't","Mehr kaufen","Skelettkönig nickt","WELCOME TO THE DARK SIDE"
+];
+let spinning=false;
+spinBtn.addEventListener('click',()=>{
+  if(spinning) return;
+  spinning=true;
+  const deg=(6+Math.floor(Math.random()*6))*360 + Math.random()*360;
+  wheel.style.transform=`rotate(${deg}deg)`;
+  setTimeout(()=>{
+    const i=Math.floor((deg%360)/30)%12;
+    result.textContent=outcomes[i];
+    spinning=false;
+  },5200);
+});
