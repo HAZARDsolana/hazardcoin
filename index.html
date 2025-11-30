@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HAZARD – Dark Power Memecoin on Solana. No roadmap. No promises. Only danger.">
+    <title>HAZARD • Dark Power on Solana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@900&family=Creepster&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--gold:#D4AF37;--blood:#8B0000;--bone:#f5f5f5}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#000;color:var(--bone);font-family:'Creepster',cursive;overflow-x:hidden;cursor:none}
+
+        /* Blood Rain */
+        .drop{position:fixed;top:-50px;width:10px;height:50px;background:var(--blood);border-radius:50%;opacity:.85;pointer-events:none;animation:fall linear infinite;box-shadow:0 0 15px #ff0000}
+        @keyframes fall{0%{transform:translateY(-100vh) rotate(0deg)}100%{transform:translateY(110vh) rotate(720deg)}}
+
+        /* Ghost Skulls */
+        .ghost{position:fixed;width:90px;opacity:0;pointer-events:none;animation:ghost 18s linear infinite;filter:drop-shadow(0 0 20px var(--blood))}
+        @keyframes ghost{0%{opacity:0;transform:translate(-150px,110vh) rotate(0)}20%{opacity:.55}80%{opacity:.55}100%{opacity:0;transform:translate(calc(100vw + 150px),-150px) rotate(1080deg)}}
+
+        /* Pulsing Runes */
+        .runes{position:absolute;width:440px;height:440px;top:50%;left:50%;transform:translate(-50%,-50%);border:4px solid var(--gold);border-radius:50%;box-shadow:0 0 90px var(--blood);animation:spin 20s linear infinite;pointer-events:none;z-index:4}
+        .runes::before{content:'';position:absolute;inset:40px;border:3px dashed var(--gold);border-radius:50%;animation:spin 12s linear reverse infinite}
+        @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+        /* Hero */
+        .hero{height:100vh;background:url('images/banner.JPEG') center/cover;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+        .logo-big{width:300px;max-width:80vw;filter:drop-shadow(0 0 60px var(--gold));animation:float 7s ease-in-out infinite;z-index:5}
+        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-40px)}}
+        .eyes{position:absolute;top:108px;width:32px;height:22px;background:#ff0040;border-radius:50%;box-shadow:0 0 50px #ff0000;animation:pulseEyes 2.5s infinite}
+        .eyes::before,.eyes::after{content:'';position:absolute;width:100%;height:100%;background:inherit;border-radius:50%;box-shadow:inherit}
+        .eyes::before{left:-48px}.eyes::after{left:48px}
+        @keyframes pulseEyes{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+        h1{font-family:'Cinzel Decorative',cursive;font-size:8rem;color:var(--gold);text-shadow:0 0 60px var(--blood);animation:titleGlow 5s infinite alternate;margin:20px 0 10px}
+        @keyframes titleGlow{from{text-shadow:0 0 60px var(--blood)}to{text-shadow:0 0 120px #ff0000}}
+        .typewriter{font-size:2.2rem;color:var(--blood);white-space:nowrap;overflow:hidden;border-right:5px solid var(--gold);width:0;animation:typing 7s steps(44) infinite,blink .8s infinite}
+        @keyframes typing{0%{width:0}45%{width:44ch}100%{width:0}}
+        @keyframes blink{50%{border-color:transparent}}
+
+        /* Mouse Trail */
+        #trail,#smoketrail{position:fixed;width:24px;height:24px;pointer-events:none;z-index:999;transform:translate(-50%,-50%);border-radius:50%}
+        #trail{background:var(--gold);mix-blend-mode:screen;box-shadow:0 0 20px var(--gold)}
+        #smoketrail{background:var(--blood);opacity:.3;filter:blur(12px)}
+
+        /* Sections */
+        section{padding:120px 20px;text-align:center;position:relative;z-index:10;background:rgba(0,0,0,0.7)}
+        h2{font-size:4.5rem;color:var(--gold);text-shadow:0 0 40px var(--blood);margin-bottom:60px}
+        .ca-section{background:#0a0000;padding:50px;border:3px double var(--gold);max-width:900px;margin:40px auto}
+        #ca-address{font-family:monospace;font-size:1.4rem;background:#000;padding:20px;border:2px solid var(--blood)}
+        button{background:var(--blood);color:var(--gold);border:4px solid var(--gold);padding:15px 40px;font-size:1.5rem;cursor:pointer;margin-top:20px}
+        button:hover{background:var(--gold);color:#000}
+        .listings{display:flex;justify-content:center;flex-wrap:wrap;gap:50px;margin-top:80px}
+        .listing-item img{width:100px;filter:drop-shadow(0 0 20px var(--gold))}
+        .footer{background:#000;padding:40px;text-align:center;border-top:3px solid var(--gold)}
+        .social-links a{color:var(--gold);margin:0 15px;font-size:1.3rem;text-decoration:none}
+
+        /* RESPONSIVE – FÜR HANDY */
+        @media (max-width:768px){
+            .hero{height:80vh;padding:20px}
+            .logo-big{width:250px}
+            h1{font-size:5rem}
+            .typewriter{font-size:1.5rem}
+            section{padding:60px 10px}
+            h2{font-size:3rem}
+            .ca-section{padding:40px;max-width:95vw;margin:20px auto}
+            #ca-address{font-size:1.2rem;padding:15px}
+            button{padding:12px 30px;font-size:1.3rem}
+            .listings{gap:30px}
+            .listing-item img{width:80px}
+            .footer{padding:30px}
+            .social-links a{font-size:1.1rem;margin:0 10px}
+            .drop{width:6px;height:30px}
+            .ghost{width:60px}
+        }
+        @media (max-width:480px){
+            h1{font-size:4rem}
+            .typewriter{font-size:1.2rem}
+            h2{font-size:2.5rem}
+            section{padding:40px 5px}
+            button{padding:10px 25px;font-size:1.1rem}
+        }
+    </style>
+</head>
+<body>
+    <!-- Blood Rain -->
+    <script>
+        for(let i=0;i<40;i++){
+            let d=document.createElement('div');d.className='drop';
+            d.style.left=Math.random()*100+'vw';
+            d.style.animationDuration=(6+Math.random()*10)+'s';
+            d.style.animationDelay=Math.random()*5+'s';
+            document.body.appendChild(d);
+        }
+    </script>
+
+    <!-- Ghost Skulls -->
+    <script>
+        setInterval(()=>{let g=document.createElement('img');g.src='images/skull.JPEG';g.className='ghost';
+            g.style.left=(Math.random()*40-10)+'%';
+            g.style.animationDuration=(15+Math.random()*20)+'s';
+            g.style.animationDelay=Math.random()*3+'s';
+            document.body.appendChild(g);
+            setTimeout(()=>g.remove(),40000);
+        },3500);
+    </script>
+
+    <!-- Mouse Trail -->
+    <div id="trail"></div><div id="smoketrail"></div>
+    <script>
+        document.addEventListener('mousemove',e=>{
+            document.getElementById('trail').style.left=e.clientX+'px';
+            document.getElementById('trail').style.top=e.clientY+'px';
+            document.getElementById('smoketrail').style.left=e.clientX+'px';
+            document.getElementById('smoketrail').style.top=e.clientY+'px';
+        });
+    </script>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="runes"></div>
+        <img src="images/logo.JPEG" alt="HAZARD" class="logo-big">
+        <div class="eyes"></div>
+        <h1>HAZARD</h1>
+        <div class="typewriter">Powered by the Dark Power on Solana</div>
+    </section>
+
+    <!-- About -->
+    <section class="section">
+        <h2>DARK POWER AWAKENS</h2>
+        <img src="images/skull.JPEG" alt="Skull" class="skull-float">
+        <p class="lore-text">HAZARD brings danger, mystery, and adrenaline back to the crypto world. Keine Versprechen. Keine Roadmaps. Nur purer, dunkler Thrill auf Solana.</p>
+    </section>
+
+    <!-- Wheel -->
+    <section class="section wheel-bg">
+        <h2>THE HAZARD WHEEL</h2>
+        <p>Dreh das Rad der Unterwelt – was wird das Schicksal dir geben?</p>
+        <div class="wheel-container">
+            <img id="wheel" src="https://i.ibb.co/Hnd7VwK/hazard-wheel.png" alt="Wheel">
+            <button id="spin-btn">SPIN</button>
+        </div>
+        <div id="wheel-result">Klick SPIN …</div>
+    </section>
+
+    <!-- CA -->
+    <section class="ca-section">
+        <h2>CONTRACT ADDRESS</h2>
+        <div id="ca-address">DEINE_ECHTE_CA_HIER_EINFÜGEN</div>
+        <button id="copy-btn">COPY</button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 HAZARD. Powered by the Dark Power on Solana 🖤💀</p>
+        <div class="social-links">
+            <a href="https://x.com/HAZARD_Solana" target="_blank">X</a> |
+            <a href="https://t.me/hazardcoinofficial" target="_blank">Telegram</a>
+        </div>
+    </footer>
+
+    <!-- Script (alles inline) -->
+    <script>
+        // Copy CA
+        document.getElementById('copy-btn').onclick = () => {
+            const ca = document.getElementById('ca-address').textContent;
+            navigator.clipboard.writeText(ca).then(() => alert('CA kopiert!'));
+        };
+
+        // Wheel
+        const wheel = document.getElementById('wheel');
+        const spinBtn = document.getElementById('spin-btn');
+        const result = document.getElementById('wheel-result');
+        const outcomes = [
+            "10x incoming", "Rugpull dodged", "Lambo in Hölle", "Jeet verflucht",
+            "Dark Power HODL", "Paperhands lachen", "50/50 reich/pleite", "Hazard grinst",
+            "Bag 100x't", "Mehr kaufen", "Skelettkönig nickt", "DARK SIDE"
+        ];
+        let spinning = false;
+        spinBtn.onclick = () => {
+            if (spinning) return;
+            spinning = true;
+            const deg = (5 + Math.random() * 5) * 360 + Math.random() * 360;
+            wheel.style.transform = `rotate(${deg}deg)`;
+            setTimeout(() => {
+                const index = Math.floor(deg / 30) % 12;
+                result.textContent = outcomes[index];
+                spinning = false;
+            }, 5000);
+        };
+    </script>
+</body>
+</html>
