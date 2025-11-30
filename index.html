@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>HAZARD — Powered by the Dark Power on Solana</title>
 <meta name="description" content="HAZARD — community-driven dark memecoin on Solana. No promises. No rug. Play responsibly.">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">  <!-- <-- NEU: Font laden -->
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,9 +22,11 @@
         <!-- animated contract box -->
         <div class="contract-wrap">
           <div class="contract-card" aria-live="polite">
-            <div id="contractText" class="contract-text">DEINE_CONTRACT_ADDRESS_HIER_EINFÜGEN</div>
-            <div class="contract-actions">
-              <button id="copyBtn" class="btn copy">COPY</button>
+            <div class="contract-inner">  <!-- <-- FIX: Wrapper hinzugefügt -->
+              <div id="contractText" class="contract-text">DEINE CONTRACT ADDRESS HIER EINFÜGEN</div>  <!-- <-- Leerzeichen -->
+              <div class="contract-actions">
+                <button id="copyBtn" class="btn copy">COPY</button>
+              </div>
             </div>
           </div>
         </div>
@@ -55,8 +58,8 @@
         <div class="socials">
           <a class="social" href="https://x.com/HAZARD_Solana" target="_blank" rel="noopener">X</a>
           <a class="social" href="https://t.me/hazardcoinofficial" target="_blank" rel="noopener">Telegram</a>
-          <a class="social" href="#" target="_blank" rel="noopener">DexScreener</a>
-          <a class="social" href="#" target="_blank" rel="noopener">Solscan</a>
+          <a class="social" href="https://dexscreener.com/solana/YOUR-TOKEN-ADDRESS" target="_blank" rel="noopener">DexScreener</a>  <!-- <-- Beispiel-URL, ersetzen -->
+          <a class="social" href="https://solscan.io/token/YOUR-TOKEN-ADDRESS" target="_blank" rel="noopener">Solscan</a>  <!-- <-- Beispiel-URL, ersetzen -->
         </div>
       </section>
     </main>
