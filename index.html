@@ -9,29 +9,54 @@
 <body>
   <div class="bg-layer"></div>
 
-  <header class="wrap">
+<header class="wrap">
+
     <div class="skull-wrap">
-      <img src="images/skull_a.png" alt="HAZARD Skull" class="skull" />
-      <div class="skull-glow" aria-hidden="true"></div>
+        <img src="images/skull_a.png" alt="HAZARD Skull" class="skull" />
+        <div class="skull-glow" aria-hidden="true"></div>
     </div>
 
     <h1 class="title">HAZARD</h1>
     <p class="slogan">Powered by the Dark Power on Solana 🖤💀</p>
-    <p class="slogan">CA: 0000000000000</p>
+
+    <!-- 🔥 ANIMIERTE CONTRACT BOX -->
+    <div class="ca-container">
+        <div id="ca-text" class="ca-box">0000000000000</div>
+        <button class="ca-copy-btn" onclick="copyCA()">COPY</button>
+    </div>
+
     <div class="content">
-      <p class="lead">HAZARD brings back danger, mystery and adrenaline to crypto.<br>No promises. No safety. Just the game.</p>
-      <p class="lead highlight">COMING SOON</p>
-      <p class="lead">Enter only if you trust your own decisions.</p>
-      <p class="community">🖤 <strong>100% community</strong></p>
+        <p class="lead bigger">
+            HAZARD ist kein gewöhnlicher Coin.  
+            Es gibt keine Roadmap. Keine Versprechen. Keine Sicherheit.  
+            Nur Risiko, Freiheit und die dunkle Seite von Solana.
+        </p>
+
+        <p class="lead bigger">
+            HAZARD ist zu 100% fair und zu 100% Community-geführt.  
+            Jeder entscheidet für sich selbst – wie viel er investiert, wie lange er hält,
+            und wann er aussteigt. Ohne Garantien. Ohne Absicherung. Ohne Ausreden.
+        </p>
+
+        <p class="lead bigger">
+            Wenn du HAZARD kaufst, akzeptierst du, dass jede Entscheidung deine eigene ist.  
+            Kein Team kontrolliert etwas. Kein Entwickler kann etwas verändern.  
+            Das Spiel gehört dir – und nur dir.
+        </p>
+
+        <p class="lead highlight">COMING SOON</p>
+        <p class="lead">Enter only if you trust your own decisions.</p>
+        <p class="community">🖤 <strong>100% community</strong></p>
     </div>
 
     <div class="cta-row">
-      <a class="btn" href="https://x.com/HAZARD_Solana" target="_blank" rel="noopener">X</a>
-      <a class="btn" href="https://t.me/hazardcoinofficial" target="_blank" rel="noopener">Telegram</a>
+        <a class="btn" href="https://x.com/HAZARD_Solana" target="_blank" rel="noopener">X</a>
+        <a class="btn" href="https://t.me/hazardcoinofficial"
+            target="_blank" rel="noopener">Telegram</a>
     </div>
-  </header>
+    
+</header>
 
-  
 <script src="script.js"></script>
 </body>
 </html>
