@@ -1,1 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAZARD – Dark Power on Solana</title>
 
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: #d7b375;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            background: url("images/banner.jpeg") center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero-logo {
+            width: 260px;
+            max-width: 80%;
+            filter: drop-shadow(0 0 20px #d7b375);
+            margin-bottom: 25px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px #8B0000;
+        }
+
+        .hero-sub {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            color: #b88a33;
+        }
+
+        /* ABOUT SECTION */
+        section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 3rem;
+            color: #d7b375;
+            margin-bottom: 20px;
+        }
+
+        p {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #f2e7c9;
+            font-size: 1.2rem;
+        }
+
+        .about-skull {
+            width: 160px;
+            margin: 30px auto;
+            display: block;
+            opacity: 0.9;
+        }
+
+        /* CA SECTION */
+        .ca-box {
+            background: #111;
+            border: 2px solid #d7b375;
+            padding: 25px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .ca-text {
+            font-family: monospace;
+            font-size: 1.2rem;
+            padding: 15px;
+            background: #000;
+            border: 1px solid #8B0000;
+            color: #fff;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            background: #8B0000;
+            color: #d7b375;
+            border: 2px solid #d7b375;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #d7b375;
+            color: #000;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 60px;
+            padding: 40px;
+            text-align: center;
+            border-top: 2px solid #d7b375;
+        }
+
+        .social a {
+            color: #d7b375;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            text-decoration: none;
+        }
+
+        .social a:hover {
+            color: #fff;
+        }
+
+        /* MOBILE FIXES */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .hero-sub { font-size: 1.2rem; }
+            h2 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2.4rem; }
+            .hero-logo { width: 200px; }
+            p { font-size: 1rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <img src="images/logo.jpeg" alt="Hazard Logo" class="hero-logo">
+
+        <h1 class="hero-title">HAZARD</h1>
+        <div class="hero-sub">Dark Power on Solana · No Promises · Only Danger</div>
+    </section>
+
+    <!-- ABOUT -->
+    <section>
+        <h2>DARK POWER AWAKENS</h2>
+        <img src="images/skull.jpeg" alt="Skull" class="about-skull">
+
+        <p>
+            HAZARD brings danger, mystery and adrenaline back to crypto.  
+            No roadmap. No safety. No handholding.  
+            Only raw, dark energy on Solana.
+        </p>
+    </section>
+
+    <!-- CONTRACT ADDRESS -->
+    <section>
+        <h2>CONTRACT ADDRESS</h2>
+
+        <div class="ca-box">
+            <div id="ca-text" class="ca-text">DEINE_CA_HIER</div>
+            <button onclick="copyCA()">COPY</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 HAZARD – The Dark Power on Solana</p>
+
+        <div class="social">
+            <a href="https://x.com/HAZARD_Solana" target="_blank">X</a>
+            <a href="https://t.me/hazardcoinofficial" target="_blank">Telegram</a>
+        </div>
+    </footer>
+
+    <script>
+        function copyCA() {
+            const ca = document.getElementById("ca-text").innerText;
+            navigator.clipboard.writeText(ca);
+            alert("Contract Address kopiert!");
+        }
+    </script>
+
+</body>
+</html>
