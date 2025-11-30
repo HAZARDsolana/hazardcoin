@@ -1,13 +1,106 @@
-:root{--g:#d4af37;--r:#b30000;--d:#000}
+:root{
+  --gold:#d4af37;
+  --blood:#b30000;
+  --dark:#000;
+  --bone:#f8f8f8;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{background:var(--d);color:#fff;font-family:'Cinzel',serif;min-height:100vh}
-.hero{display:flex;align-items:center;justify-content:center;text-align:center;flex-direction:column;gap:24px;min-height:100vh;background:radial-gradient(circle at center,rgba(20,0,0,.5),#000)}
-.hero-skull{width:280px;max-width:70%;border-radius:16px;filter:drop-shadow(0 20px 40px #000);animation:f 4s ease-in-out infinite}
-@keyframes f{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-h1{font-size:clamp(60px,13vw,140px);letter-spacing:10px;color:#fff;text-shadow:0 0 30px var(--r),0 0 60px var(--g);animation:g 2.5s ease-in-out infinite alternate}
-@keyframes g{from{text-shadow:0 0 30px var(--r)}to{text-shadow:0 0 60px var(--g),0 0 90px var(--g)}}
-.sub{font-size:clamp(16px,3vw,22px);color:var(--g)}
-.teaser{max-width:760px;font-size:clamp(18px,4vw,26px);line-height:1.6}
-.tagline{margin-top:40px;font-size:clamp(22px,5vw,40px);color:var(--r);animation:p 2s infinite}
-@keyframes p{0%,100%{opacity:1}50%{opacity:0.6}}
-footer{padding:30px;text-align:center;font-size:14px;opacity:0.6}
+html,body{
+  background:var(--dark);
+  color:#fff;
+  font-family:'Cinzel',serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* HERO */
+.hero{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  flex-direction:column;
+  gap:28px;
+  min-height:100vh;
+  background:radial-gradient(circle at center,rgba(30,0,0,0.4),var(--dark));
+  padding:20px;
+}
+
+/* RUNDES SKULL-LOGO (Variante 2 + Mobile) */
+.hero-skull{
+  width:320px;
+  height:320px;
+  max-width:68vw;
+  border-radius:50%;                  /* 100% rund */
+  object-fit:cover;
+  border:5px solid var(--gold);
+  box-shadow:
+    0 0 50px rgba(212,175,55,0.5),
+    0 0 90px rgba(179,0,0,0.35);
+  filter:drop-shadow(0 20px 40px #000);
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+
+/* Mobile Optimierung Skull */
+@media (max-width:480px){
+  .hero-skull{width:220px;height:220px;border-width:4px}
+}
+@media (max-width:360px){
+  .hero-skull{width:190px;height:190px}
+}
+
+/* TITEL MIT GLOW */
+h1{
+  font-size:clamp(60px,13vw,140px);
+  letter-spacing:10px;
+  color:#fff;
+  text-shadow:0 0 30px var(--blood),0 0 60px var(--gold);
+  animation:glow 2.5s ease-in-out infinite alternate;
+}
+@keyframes glow{
+  from{text-shadow:0 0 30px var(--blood)}
+  to{text-shadow:0 0 60px var(--gold),0 0 90px var(--gold)}
+}
+
+/* SUBTITLE */
+.sub{
+  font-size:clamp(16px,3vw,22px);
+  color:var(--gold);
+}
+
+/* TEASER TEXT */
+.teaser{
+  max-width:760px;
+  font-size:clamp(18px,4vw,26px);
+  line-height:1.6;
+}
+
+/* COMING SOON */
+.tagline{
+  margin-top:40px;
+  font-size:clamp(22px,5vw,40px);
+  color:var(--blood);
+  font-weight:700;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:0.6}
+}
+
+/* FOOTER */
+footer{
+  padding:30px 20px;
+  text-align:center;
+  font-size:14px;
+  opacity:0.6;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important}
+}
