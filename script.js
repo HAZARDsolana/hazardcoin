@@ -11,4 +11,4 @@ document.addEventListener('mousemove', function(e){
   if(glow){
     glow.style.transform = `translate(-50%,-50%) translate(${dx*10}px, ${dy*10}px)`;
   }
-})
+});
