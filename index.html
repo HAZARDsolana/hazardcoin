@@ -1,36 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>HAZARD — Energy Pulse (Coming Soon)</title>
-<link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HAZARD – Coming Soon</title>
+
+<style>
+/* ---------- BACKGROUND ---------- */
+body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: #d7b375; /* Mystic gold */
+    font-family: "Georgia", serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* ---------- ANIMATED NEBEL ---------- */
+#fog {
+    position: fixed;
+    top: -50px;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: url('https://i.imgur.com/8s7EJ5L.png') repeat;
+    opacity: 0.15;
+    animation: fogMove 60s linear infinite;
+    z-index: -1;
+}
+
+@keyframes fogMove {
+    0% { transform: translateX(0px); }
+    100% { transform: translateX(-1000px); }
+}
+
+/* ---------- SKULL ---------- */
+.skull {
+    width: 170px;
+    opacity: 0.95;
+    animation: skullFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes skullFloat {
+    0% { transform: translateY(0px); opacity: 0.85; }
+    100% { transform: translateY(-12px); opacity: 1; }
+}
+
+/* ---------- GLOWING TEXT ---------- */
+h1 {
+    font-size: 4.3rem;
+    letter-spacing: 6px;
+    margin: 20px 0 10px 0;
+    text-shadow: 
+        0 0 10px #d7b375,
+        0 0 20px #a07a40,
+        0 0 40px #d7b37588;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0% { text-shadow: 0 0 10px #d7b375; }
+    50% { text-shadow: 0 0 25px #eacfa2; }
+    100% { text-shadow: 0 0 10px #d7b375; }
+}
+
+/* ---------- SLOGAN SMOKE TEXT ---------- */
+.smoke {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px #664422;
+    animation: smokeGlow 5s ease-in-out infinite alternate;
+}
+
+@keyframes smokeGlow {
+    0% { opacity: 0.7; text-shadow: 0 0 5px #332211; }
+    100% { opacity: 1; text-shadow: 0 0 15px #bb9955; }
+}
+
+/* ---------- CONTENT TEXT ---------- */
+p {
+    font-size: 1.3rem;
+    max-width: 750px;
+    line-height: 1.65;
+    margin: 18px 0;
+    opacity: 0.9;
+    animation: fadeIn 3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 0.92; }
+}
+
+</style>
 </head>
+
 <body>
-  <div class="bg-layer"></div>
 
-  <header class="wrap">
-    <div class="skull-wrap">
-      <img src="images/skull_a.png" alt="HAZARD Skull" class="skull" />
-      <div class="skull-glow" aria-hidden="true"></div>
-    </div>
+<div id="fog"></div>
 
-    <h1 class="title">HAZARD</h1>
-    <p class="slogan">Powered by the Dark Power on Solana 🖤💀</p>
+<img class="skull" src="skull.png" alt="HAZARD Skull" />
 
-    <div class="content">
-      <p class="lead">HAZARD brings back danger, mystery and adrenaline to crypto.<br>No promises. No safety. Just the game.</p>
-      <p class="lead highlight">Welcome to the endgame.</p>
-      <p class="lead">Enter only if you trust your own decisions.</p>
-      <p class="community">🖤 <strong>100% community</strong></p>
-    </div>
+<h1>HAZARD</h1>
 
-    <div class="cta-row">
-      <a class="btn" href="#" target="_blank" rel="noopener">Twitter</a>
-      <a class="btn" href="#" target="_blank" rel="noopener">Telegram</a>
-    </div>
-  </header>
+<p class="smoke">Powered by the Dark Power on Solana 🖤💀</p>
 
-<script src="script.js"></script>
+<p>
+HAZARD brings back danger, mystery and adrenaline to crypto.<br>
+No promises. No safety. Just the game.
+</p>
+
+<p>
+Welcome to the endgame.
+</p>
+
+<p>
+Enter only if you trust your own decisions.
+</p>
+
+<p>
+🖤 100% community
+</p>
+
 </body>
 </html>
