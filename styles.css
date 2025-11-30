@@ -1,165 +1,144 @@
-/* ---------------------------------
-   HAZARD GLOBAL STYLE
----------------------------------- */
-
-:root {
-    --gold: #d4af37;
-    --blood: #8b0000;
-    --bone: #f5f5f5;
-    --dark: #000;
+:root{
+  --gold:#d7b375;
+  --blood:#8b0000;
+  --bone:#f5f5f5;
+  --dark:#000000;
+  --max-width:1100px;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    background: var(--dark);
-    color: var(--bone);
-    font-family: "Cinzel", serif;
-    overflow-x: hidden;
-    height: auto !important;
-    min-height: 100%;
+/* ----- Reset + base ----- */
+*{box-sizing:border-box}
+html,body{
+  margin:0;padding:0;
+  background:var(--dark);
+  color:var(--bone);
+  font-family: "Cinzel", Georgia, serif;
+  -webkit-font-smoothing:antialiased;
+  height:auto !important;
+  min-height:100%;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+.container{width:100%;max-width:var(--max-width);margin:0 auto;padding:0 18px}
+
+/* ----- HERO ----- */
+.hero{
+  position:relative;
+  padding:28px 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-height: calc(var(--vh, 1vh) * 72); /* JS sets --vh to avoid mobile 100vh bug */
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.65));
+  overflow:visible;
+}
+.hero-inner{display:flex;flex-direction:column;align-items:center;gap:12px}
+
+/* skull image */
+.hero-skull{
+  width:260px;
+  max-width:58%;
+  border-radius:12px;
+  filter: drop-shadow(0 18px 60px rgba(0,0,0,0.7));
+  transition:transform .45s ease;
+}
+.hero-skull:hover{transform:translateY(-6px)}
+
+/* title */
+.hero-title{
+  margin:6px 0 0;
+  font-size:clamp(36px, 6.2vw, 64px);
+  color:var(--gold);
+  letter-spacing:6px;
+  text-shadow:0 0 28px rgba(139,0,0,0.16);
+}
+.hero-sub{color:rgba(215,180,120,0.95);font-size:clamp(14px,1.8vw,18px)}
+
+/* tagline */
+.hero-tagline{margin-top:6px;color:var(--blood);font-weight:700;letter-spacing:2px}
+
+/* ----- CONTRACT CARD (animated border) ----- */
+.contract-wrap{width:100%;display:flex;justify-content:center;margin-top:18px}
+.contract-card{
+  width:100%;
+  max-width:820px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.12));
+  padding:12px;
+  border-radius:12px;
+  position:relative;
+  overflow:hidden;
+  border:2px solid rgba(215,180,120,0.06);
+}
+.contract-card::before{
+  content:"";
+  position:absolute;inset:-3px;
+  background:conic-gradient(from 0deg, rgba(215,180,120,0.12), rgba(139,0,0,0.14), rgba(245,245,245,0.06));
+  filter:blur(12px);
+  transform:rotate(0deg);
+  animation:spin 6s linear infinite;
+  z-index:0;
+  pointer-events:none;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* inner */
+.contract-inner{position:relative;z-index:2;display:flex;align-items:center;gap:12px;padding:8px}
+.contract-text{
+  flex:1 1 300px;
+  font-family:monospace;
+  background:rgba(0,0,0,0.5);
+  color:var(--bone);
+  padding:12px 14px;
+  border-radius:8px;
+  border:1px solid rgba(139,0,0,0.08);
+  word-break:break-all;
+  font-size:1rem;
+}
+.contract-actions{display:flex;gap:8px;align-items:center}
+
+/* copy button */
+.btn.copy{
+  padding:10px 14px;
+  border-radius:8px;
+  background:linear-gradient(180deg,var(--blood), #7a0000);
+  color:var(--gold);
+  border:2px solid var(--gold);
+  font-weight:700;
+  cursor:pointer;
+  transition:all .18s ease;
+}
+.btn.copy:hover{transform: translateY(-3px);filter:brightness(1.05)}
+
+/* visual badge */
+.copy-badge{font-size:.95rem;color:var(--bone);opacity:.9;margin-left:8px}
+
+/* ----- CONTENT PANELS ----- */
+.panel{padding:48px 0}
+.panel h2{font-size:clamp(22px,3.4vw,36px);color:var(--gold);margin-bottom:12px}
+.lead{color:#f2e7c9;font-size:1.05rem;line-height:1.7;margin-bottom:12px}
+.community{margin-top:10px;color:var(--gold);font-weight:700}
+
+/* ----- SOCIALS ----- */
+.socials{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.social{display:inline-block;padding:8px 12px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02);color:var(--gold);text-decoration:none;font-weight:700}
+
+/* ----- FOOTER ----- */
+.site-footer{padding:28px 0;text-align:center;color:rgba(245,245,245,0.85);border-top:1px solid rgba(255,255,255,0.02)}
+
+/* ----- RESPONSIVE ----- */
+@media (max-width:900px){
+  .hero-skull{width:220px}
+  .contract-inner{flex-direction:column;align-items:stretch}
+  .contract-actions{justify-content:flex-end}
+  .container{padding:0 14px}
+}
+@media (max-width:480px){
+  .hero-skull{width:180px}
+  .hero-title{font-size:28px}
 }
 
-/* ---------------------------------
-   HEADER / HERO
----------------------------------- */
-
-.wrap {
-    text-align: center;
-    padding: 60px 20px;
-    width: 100%;
-    max-width: 900px;
-    margin: auto;
-    position: relative;
-}
-
-/* Skull & Glow */
-.skull-wrap {
-    position: relative;
-    width: 180px;
-    margin: 0 auto 25px;
-}
-
-.skull {
-    width: 100%;
-    filter: drop-shadow(0 0 25px var(--blood));
-}
-
-.skull-glow {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,0,0,0.3), transparent);
-    filter: blur(30px);
-    animation: pulse 3s infinite;
-}
-
-@keyframes pulse {
-    0%,100% { opacity: .5; }
-    50% { opacity: 1; }
-}
-
-/* ---------------------------------
-   TEXT
----------------------------------- */
-
-.title {
-    font-size: 4rem;
-    color: var(--gold);
-    text-shadow: 0 0 25px var(--blood);
-    margin: 10px 0 5px;
-}
-
-.slogan {
-    font-size: 1.3rem;
-    color: var(--bone);
-    margin: 5px 0;
-}
-
-.lead {
-    font-size: 1.4rem;
-    margin-top: 25px;
-    line-height: 1.5;
-}
-
-.highlight {
-    margin-top: 20px;
-    font-size: 1.8rem;
-    color: var(--gold);
-    text-shadow: 0 0 15px var(--blood);
-}
-
-/* ---------------------------------
-   COMMUNITY TAG
----------------------------------- */
-
-.community {
-    margin-top: 25px;
-    font-size: 1.2rem;
-    color: var(--gold);
-}
-
-/* ---------------------------------
-   BUTTONS
----------------------------------- */
-
-.cta-row {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.btn {
-    padding: 12px 28px;
-    font-size: 1.2rem;
-    color: var(--gold);
-    border: 2px solid var(--gold);
-    text-decoration: none;
-    transition: .2s;
-    border-radius: 8px;
-}
-
-.btn:hover {
-    background: var(--gold);
-    color: #000;
-    box-shadow: 0 0 15px var(--gold);
-}
-
-/* ---------------------------------
-   RESPONSIVE
----------------------------------- */
-
-@media (max-width: 768px) {
-    .title {
-        font-size: 3rem;
-    }
-
-    .lead {
-        font-size: 1.2rem;
-    }
-
-    .highlight {
-        font-size: 1.5rem;
-    }
-
-    .skull-wrap {
-        width: 150px;
-    }
-}
-
-/* ---------------------------------
-   FIX FÜR HANDY QUERFORMAT (wichtiger Teil!)
----------------------------------- */
-
-@media screen and (orientation: landscape) {
-    html, body {
-        height: auto !important;
-        overflow-y: scroll !important;
-    }
-
-    .wrap {
-        padding: 40px 20px;
-        height: auto !important;
-    }
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .contract-card::before, .hero-skull{animation:none;transform:none}
 }
