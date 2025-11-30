@@ -1,21 +1,42 @@
-// subtle parallax on mouse move for skull and glow
-document.addEventListener('mousemove', function(e){
-  const w = window.innerWidth/2, h = window.innerHeight/2;
-  const dx = (e.clientX - w)/w, dy = (e.clientY - h)/h;
-  const skull = document.querySelector('.skull');
-  const glow = document.querySelector('.skull-glow');
-  if(skull){
-    // small translate for more natural movement
-    skull.style.transform = `translateY(${ -10 + dy*6 }px)`;
+// ===== viewport fix for mobile (avoid 100vh problems) =====
+(function setVh(){
+  function updateVh(){
+    document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
   }
-  if(glow){
-    glow.style.transform = `translate(-50%,-50%) translate(${dx*10}px, ${dy*10}px)`;
-  }
-});
+  updateVh();
+  window.addEventListener('resize', updateVh);
+  window.addEventListener('orientationchange', function(){ setTimeout(updateVh, 250); });
+})();
 
-function copyCA() {
-    navigator.clipboard.writeText(
-        document.getElementById("ca-text").textContent
-    );
-    alert("Contract copied!");
-}
+// ===== copy contract behavior with feedback =====
+document.addEventListener('DOMContentLoaded', function(){
+  const copyBtn = document.getElementById('copyBtn');
+  const contractText = document.getElementById('contractText');
+
+  if (!copyBtn || !contractText) return;
+
+  copyBtn.addEventListener('click', async function(){
+    const text = contractText.textContent.trim();
+    if (!text) return;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      // badge feedback (create or update)
+      let badge = document.querySelector('.copy-badge');
+      if (!badge) {
+        badge = document.createElement('span');
+        badge.className = 'copy-badge';
+        copyBtn.parentNode.appendChild(badge);
+      }
+      badge.textContent = 'Copied ✓';
+      badge.style.opacity = '1';
+      copyBtn.textContent = 'COPIED';
+      setTimeout(() => {
+        badge.textContent = '';
+        copyBtn.textContent = 'COPY';
+      }, 1600);
+    } catch (e) {
+      alert('Copy failed — bitte manuell kopieren: ' + text);
+    }
+  });
+});
