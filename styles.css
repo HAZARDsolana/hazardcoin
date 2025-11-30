@@ -1,0 +1,44 @@
+:root{
+  --gold:#d4af37;--blood:#b30000;--dark:#000;--bone:#f8f8f8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--dark);color:var(--bone);font-family:"Cinzel",serif;overflow-x:hidden}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
+  background:radial-gradient(circle at center,rgba(20,0,0,0.4),#000);
+}
+.hero-inner{gap:24px;display:flex;flex-direction:column;align-items:center}
+
+.hero-skull{
+  width:280px;max-width:65%;border-radius:16px;
+  filter:drop-shadow(0 20px 40px rgba(0,0,0,0.9));
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.hero-title{
+  font-size:clamp(60px,12vw,140px);letter-spacing:8px;color:#fff;
+  text-shadow:0 0 20px var(--blood),0 0 40px var(--blood),0 0 60px var(--gold);
+  animation:glow 2.5s ease-in-out infinite alternate;
+}
+@keyframes glow{
+  from{text-shadow:0 0 20px var(--blood),0 0 40px var(--blood)}
+  to{text-shadow:0 0 30px var(--gold),0 0 60px var(--gold),0 0 90px var(--gold)}
+}
+
+.hero-sub{font-size:clamp(16px,2.5vw,22px);color:#d4af37;margin-bottom:10px}
+.hero-teaser{max-width:720px;font-size:clamp(18px,3vw,24px);line-height:1.6;opacity:0.95}
+.hero-tagline{
+  margin-top:30px;font-size:clamp(20px,4vw,36px);color:var(--blood);font-weight:700;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
+
+.site-footer{padding:30px 0;text-align:center;font-size:14px;opacity:0.6}
+
+@media (max-width:480px){
+  .hero-skull{width:220px}
+  .hero-inner{padding:0 16px}
+}
