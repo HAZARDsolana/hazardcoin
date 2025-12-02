@@ -2,7 +2,6 @@
   --gold:#d4af37;
   --blood:#b30000;
   --dark:#000;
-  --bone:#f8f8f8;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{
@@ -12,6 +11,8 @@ html,body{
   min-height:100vh;
   min-height:calc(var(--vh,1vh)*100);
   overflow-x:hidden;
+  display:flex;
+  flex-direction:column;
 }
 
 /* HERO */
@@ -26,9 +27,10 @@ html,body{
   min-height:calc(var(--vh,1vh)*100);
   background:radial-gradient(circle at center,rgba(30,0,0,0.4),var(--dark));
   padding:20px;
+  flex:1;
 }
 
-/* SKULL */
+/* SKULL + TITEL + RAHMEN wie vorher */
 .hero-skull{
   width:320px;height:320px;max-width:68vw;border-radius:50%;object-fit:cover;
   border:5px solid var(--gold);
@@ -37,8 +39,6 @@ html,body{
   animation:float 4s ease-in-out infinite;
 }
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-
-/* TITEL */
 h1{
   font-size:clamp(60px,13vw,140px);
   letter-spacing:10px;
@@ -49,10 +49,7 @@ h1{
   from{text-shadow:0 0 30px var(--blood)}
   to{text-shadow:0 0 60px var(--gold),0 0 90px var(--gold)}
 }
-
-/* GOLD-RAHMEN FÜR TEXT & CA */
-.text-frame,
-.ca-box{
+.text-frame,.ca-box{
   background:rgba(20,0,0,0.6);
   border:2px solid var(--gold);
   border-radius:12px;
@@ -63,28 +60,16 @@ h1{
   box-shadow:0 0 30px rgba(212,175,55,0.3),0 0 60px rgba(179,0,0,0.4);
   animation:float 6s ease-in-out infinite;
 }
-
-/* NEUE, ELEGANT LESBARE TEXTGRÖSSE */
 .frame-content{
-  font-size: clamp(16px, 3.2vw, 20px);
-  line-height: 1.78;
-  letter-spacing: 0.4px;
-  max-width: 740px;
+  font-size: clamp(15px, 3vw, 19px);   /* noch einen Tick kleiner */
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  max-width: 720px;
   margin: 0 auto;
   text-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
-.teaser-frame .frame-content{
-  font-weight: 400;
-  opacity: 0.95;
-}
-
-.subtitle{
-  color:var(--gold);
-  font-size:clamp(19px, 4vw, 28px);
-  font-weight:700;
-}
-
-/* COMING SOON */
+.teaser-frame .frame-content{font-weight:400;opacity:0.95;}
+.subtitle{color:var(--gold);font-size:clamp(19px,4vw,28px);font-weight:700;}
 .tagline{
   margin-top:40px;
   font-size:clamp(22px,5vw,40px);
@@ -94,91 +79,78 @@ h1{
 }
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
 
-/* CONTRACT ADDRESS */
-.ca-container{margin-top:50px;animation:fadeIn 1.5s ease-out forwards;}
-.ca-label{
-  font-size:clamp(14px,2.5vw,18px);
-  color:var(--gold);
-  letter-spacing:4px;
-  margin-bottom:10px;
-  opacity:0.9;
-}
-.ca-address{
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(0,0,0,0.6);padding:14px 18px;border-radius:8px;
-  border:1px solid rgba(212,175,55,0.3);font-family:'Courier New',monospace;
-  font-size:clamp(14px,2.8vw,18px);color:#fff;word-break:break-all;gap:12px;
-}
+/* CA + SOCIAL wie vorher (leicht gekürzt) */
+.ca-container,.social-only{margin-top:50px;animation:fadeIn 1.5s ease-out forwards;}
+.ca-label{font-size:clamp(14px,2.5vw,18px);color:var(--gold);letter-spacing:4px;margin-bottom:10px;opacity:0.9;}
+.ca-address{display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,0.6);padding:14px 18px;border-radius:8px;border:1px solid rgba(212,175,55,0.3);font-family:'Courier New',monospace;font-size:clamp(14px,2.8vw,18px);color:#fff;word-break:break-all;gap:12px;}
 #copyBtn{background:none;border:none;color:var(--gold);cursor:pointer;padding:6px;border-radius:6px;transition:all .3s;}
 #copyBtn:hover{background:var(--gold);color:#000;transform:scale(1.1);}
 .ca-copied{margin-top:12px;font-size:14px;color:var(--gold);opacity:0;text-align:center;transition:opacity .4s;}
 .ca-copied.show{opacity:1;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.links-container{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;max-width:90vw;}
+.link-box{display:flex;align-items:center;gap:12px;background:rgba(20,0,0,0.6);border:2px solid var(--gold);border-radius:12px;padding:16px 28px;color:#fff;text-decoration:none;font-size:clamp(16px,3.5vw,22px);backdrop-filter:blur(8px);box-shadow:0 0 30px rgba(212,175,55,0.3);transition:all .3s ease;animation:float 6s ease-in-out infinite;min-width:200px;justify-content:center;}
+.link-box:hover{background:var(--gold);color:#000;transform:translateY(-4px);box-shadow:0 0 50px rgba(212,175,55,0.6);}
+.link-box svg{width:28px;height:28px;filter:drop-shadow(0 0 10px var(--gold));}
+.link-box:hover svg{filter:drop-shadow(0 0 15px #000);}
 
-/* SOCIAL & EXPLORER LINKS */
-.links-container{
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  justify-content:center;
-  margin-top:50px;
-  max-width:90vw;
-  animation:fadeIn 1.5s ease-out forwards;
+/* NEU: LISTED ON EXCHANGES */
+.listed-section{
+  margin: 60px 0 40px;
+  animation: fadeIn 1.5s ease-out forwards;
 }
-.link-box{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  background:rgba(20,0,0,0.6);
-  border:2px solid var(--gold);
-  border-radius:12px;
-  padding:16px 28px;
-  color:#fff;
-  text-decoration:none;
-  font-size:clamp(16px,3.5vw,22px);
-  backdrop-filter:blur(8px);
-  box-shadow:0 0 30px rgba(212,175,55,0.3);
-  transition:all .3s ease;
-  animation:float 6s ease-in-out infinite;
-  min-width:200px;
-  justify-content:center;
+.listed-title{
+  font-size: clamp(20px, 5vw, 32px);
+  color: var(--gold);
+  margin-bottom: 30px;
+  text-shadow: 0 0 20px rgba(212,175,55,0.6);
 }
-.link-box:hover{
-  background:var(--gold);
-  color:#000;
-  transform:translateY(-4px);
-  box-shadow:0 0 50px rgba(212,175,55,0.6);
+.exchange-buttons{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
 }
-.link-box svg{
-  width:28px;
-  height:28px;
-  filter:drop-shadow(0 0 10px var(--gold));
+.exchange-btn{
+  display: block;
+  width: 260px;
+  height: 90px;
+  border: 2px solid var(--gold);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(212,175,55,0.4);
+  transition: all 0.4s ease;
+  animation: float 6s ease-in-out infinite;
 }
-.link-box:hover svg{
-  filter:drop-shadow(0 0 15px #000);
+.exchange-btn:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 0 50px rgba(212,175,55,0.7);
+  border-color: #fff;
+}
+.exchange-btn img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  padding: 8px;
 }
 
-/* Mobile */
-@media (max-width:480px){.hero-skull{width:220px;height:220px;border-width:4px}}
-@media (max-width:360px){.hero-skull{width:190px;height:190px}}
-
+/* FOOTER – jetzt nicht mehr fixed */
 footer{
-  padding: 50px 20px 30px;
+  padding: 60px 20px 40px;
   text-align:center;
-  font-size:14px;
-  opacity:0.65;
   background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
-  margin-top: auto;                    /* schiebt ihn ans untere Ende */
-  pointer-events: none;                /* man kann trotzdem durchklicken */
 }
-
 footer span{
-  pointer-events: auto;                /* Text bleibt anklickbar falls Links drin */
+  font-size: 14px;
+  opacity: 0.7;
   background: rgba(0,0,0,0.8);
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 10px;
   border: 1px solid rgba(212,175,55,0.2);
 }
 
-/* Reduced motion */
+/* Mobile + Animationen */
+@media (max-width:480px){.hero-skull{width:220px;height:220px;border-width:4px}}
+@media (max-width:360px){.hero-skull{width:190px;height:190px}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @media (prefers-reduced-motion:reduce){*{animation:none !important}}
