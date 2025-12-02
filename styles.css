@@ -1,4 +1,13 @@
-/* HAZZARD MOVING DARK FOG – ultra lightweight */
+/* ============== DÜSTERER BEWEGLICHER NEBEL – SOFORT SICHTBAR ============== */
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Haupt-Nebel-Ebene */
 body::before {
   content: "";
   position: fixed;
@@ -6,42 +15,53 @@ body::before {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at 50% 50%, transparent 0%, #000 70%),
-              repeating-linear-gradient(0deg, 
-                transparent, 
-                transparent 20px, 
-                rgba(20,0,0,0.8) 20px, 
-                rgba(20,0,0,0.8) 40px),
-              repeating-linear-gradient(90deg, 
-                rgba(30,0,0,0.3), 
-                rgba(10,0,0,0.4) 10px, 
-                transparent 30px);
-  background-size: 100% 100%, 80px 100%, 120px 100%;
+  background: 
+    radial-gradient(circle at 40% 60%, rgba(80,0,0,0.6) 0%, transparent 40%),
+    radial-gradient(circle at 70% 30%, rgba(100,0,0,0.4) 0%, transparent 50%),
+    repeating-linear-gradient(45deg, 
+      transparent, 
+      transparent 30px, 
+      rgba(30,0,0,0.3) 30px, 
+      rgba(30,0,0,0.3) 60px),
+    repeating-linear-gradient(-45deg, 
+      transparent, 
+      transparent 40px, 
+      rgba(20,0,0,0.25) 40px, 
+      rgba(20,0,0,0.25) 80px);
+  background-size: 200% 200%, 150% 150%, 120px 120px, 160px 160px;
   pointer-events: none;
-  z-index: -1;
-  animation: fog 40s linear infinite;
-  opacity: 0.7;
+  z-index: -2;
+  animation: slowFog 60s linear infinite;
+  opacity: 0.85;
 }
 
-@keyframes fog {
+/* Leichtes Pulsieren + langsames Driften */
+@keyframes slowFog {
   0%   { transform: translate(0, 0) rotate(0deg); }
-  100% { transform: translate(80px, -80px) rotate(2deg); }
+  100% { transform: translate(100px, -100px) rotate(3deg); }
 }
 
-/* Optional: noch mehr Tiefe mit zweiter Ebene */
+/* Zweite Ebene für mehr Tiefe (roter Schimmer) */
 body::after {
   content: "";
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at 30% 70%, rgba(80,0,0,0.3) 0%, transparent 50%);
+  background: radial-gradient(circle at 50% 50%, rgba(120,0,0,0.15) 0%, transparent 70%);
   pointer-events: none;
   z-index: -1;
-  animation: pulseFog 25s ease-in-out infinite;
+  animation: pulseRed 20s ease-in-out infinite;
 }
 
-@keyframes pulseFog {
-  0%, 100% { opacity: 0.4; }
-  50%      { opacity: 0.8; }
+@keyframes pulseRed {
+  0%, 100% { opacity: 0.2; }
+  50%      { opacity: 0.5; }
+}
+
+/* Dein bisheriger radial-gradient als leichte Überlagerung */
+.hero {
+  position: relative;
+  z-index: 1;
+  background: radial-gradient(circle at center, rgba(30,0,0,0.4), transparent 70%);
 }
 
 :root{
