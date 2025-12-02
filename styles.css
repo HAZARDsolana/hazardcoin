@@ -246,3 +246,44 @@ body {
   overflow-y: auto;               /* erlaubt normales Scrollen innerhalb der Seite */
   -webkit-overflow-scrolling: touch; /* butterweiches Scrollen auf iOS */
 }
+/* LIVE STATS BLOCK – groß, zentral, brutal geil */
+.stats-container{
+  margin: 50px 0;
+  animation: fadeIn 2s ease-out;
+}
+.stats-grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.stat-item{
+  background: rgba(20,0,0,0.7);
+  border: 2px solid var(--gold);
+  border-radius: 16px;
+  padding: 18px 28px;
+  min-width: 160px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(212,175,55,0.4);
+  animation: float 6s ease-in-out infinite;
+}
+.stat-label{
+  display: block;
+  font-size: 13px;
+  color: #aaa;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.stat-value{
+  font-size: clamp(20px, 5vw, 32px);
+  font-weight: 700;
+  color: var(--gold);
+  text-shadow: 0 0 20px var(--gold);
+}
+#change.positive{ color: #00ff9d; }
+#change.negative{ color: #ff0066; }
