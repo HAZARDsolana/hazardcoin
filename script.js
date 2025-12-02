@@ -29,7 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-// LIVE TICKER – DEXSCREENER (funktioniert SOFORT bei Pump.fun Tokens)
+// 100vh Fix
+const setVh = () => {
+  document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px');
+};
+setVh();
+window.addEventListener('resize', setVh);
+
+// LIVE TICKER – Dexscreener (funktioniert sofort mit deiner CA)
 const CA = "7Y2TPeq3hqw21LRTCi4wBWoivDngCpNNJsN1hzhZpump";
 
 async function updateTicker() {
@@ -38,28 +45,24 @@ async function updateTicker() {
     const data = await res.json();
 
     if (data.pairs && data.pairs.length > 0) {
-      const pair = data.pairs.find(p => p.baseToken.address === CA) || data.pairs[0];
-      
+      const pair = data.pairs[0];
       const price = Number(pair.priceUsd || 0);
-      const priceChange24h = pair.priceChange?.h24 || 0;
-      const volume24h = pair.volume?.h24 || 0;
-      const liquidity = pair.liquidity?.usd || 0;
-      const mcap = price * 1_000_000_000; // 1B Supply (bei den meisten Pump.fun Tokens)
+      const change = Number(pair.priceChange?.h24 || 0);
+      const volume = Number(pair.volume?.h24 || 0);
+      const liquidity = Number(pair.liquidity?.usd || 0);
+      const mcap = liquidity * 2; // bei Pump.fun meist ~2× Liquidity
 
-      document.getElementById('price').textContent = `$${price.toFixed(9)}`;
-      document.getElementById('change').textContent = `${priceChange24h > 0 ? '+' : ''}${priceChange24h.toFixed(2)}%`;
-      document.getElementById('change').className = priceChange24h > 0 ? 'positive' : 'negative';
-      document.getElementById('volume').textContent = `$${Math.round(volume24h).toLocaleString()}`;
-      document.getElementById('mcap').textContent = `$${Math.round(mcap).toLocaleString()}`;
-      
-      // Holders gibt Dexscreener nicht → wir lassen es leer oder setzen manuell später
-      document.getElementById('holders').textContent = "soon";
+      document.getElementById('price').textContent   = `$${price.toFixed(9)}`;
+      document.getElementById('change').textContent  = `${change > 0 ? '+' : ''}${change.toFixed(2)}%`;
+      document.getElementById('change').className    = change > 0 ? 'positive' : 'negative';
+      document.getElementById('volume').textContent  = `$${Math.round(volume).toLocaleString()}`;
+      document.getElementById('mcap').textContent    = `$${Math.round(mcap).toLocaleString()}`;
     }
   } catch (e) {
-    console.log("Noch kein Trade – warte auf ersten Käufer");
+    console.log("Warte auf ersten Trade…");
   }
 }
 
-// Update alle 10 Sekunden
+// Start + alle 10 Sekunden
 updateTicker();
 setInterval(updateTicker, 10000);
