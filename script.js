@@ -30,35 +30,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // HAZARD SOUND – Growl beim Klick auf den Skull + einmal beim ersten Betreten
-  const sound = document.getElementById('hazardSound');
-  const skull = document.querySelector('.hero-skull');
-  let hasPlayed = false;
 
-  function playSound() {
-    if (!sound) return;
-    sound.currentTime = 0;
-    sound.volume = 0.6;
-    sound.play().catch(() => {}); // Mobile-Browser blocken manchmal Autoplay → egal
-  }
-
-  // 1. Beim ersten Klick/Tap überall auf der Seite (Mobile-Fix)
-  document.body.addEventListener('click', function unlock() {
-    playSound();
-    document.body.removeEventListener('click', unlock);
-  }, { once: true });
-
-  // 2. Bei jedem Klick auf den Skull
-  if (skull) {
-    skull.style.cursor = 'pointer';
-    skull.addEventListener('click', playSound);
-  }
-
-  // 3. Optional: einmal beim ersten Betreten (nach User-Interaktion)
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      if (!hasPlayed) playSound();
-      hasPlayed = true;
-    }, 800);
-  });
-});
