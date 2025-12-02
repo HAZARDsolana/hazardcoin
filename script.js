@@ -29,36 +29,37 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-// LIVE TICKER – 100% funktionierend Dez 2025
-const CA = "7Y2TPeq3hqw21LRTCi4wBWoivDngCpNNJsN1hzhZpump"; // ← genau hier rein, nichts davor/dahinter
+// LIVE TICKER – DEXSCREENER (funktioniert SOFORT bei Pump.fun Tokens)
+const CA = "7Y2TPeq3hqw21LRTCi4wBWoivDngCpNNJsN1hzhZpump";
 
 async function updateTicker() {
   try {
-    const response = await fetch(`https://public-api.birdeye.so/defi/token_overview?address=${CA}`, {
-      headers: {
-        "x-api-key": "1a2b3c4d5e6f7890123456789012345678901234567890" // aktueller funktionierender Public-Key
-      }
-    });
+    const res = await fetch(`https://api.dexscreener.com/latest/dex/tokens/${CA}`);
+    const data = await res.json();
 
-    const data = await response.json();
+    if (data.pairs && data.pairs.length > 0) {
+      const pair = data.pairs.find(p => p.baseToken.address === CA) || data.pairs[0];
+      
+      const price = Number(pair.priceUsd || 0);
+      const priceChange24h = pair.priceChange?.h24 || 0;
+      const volume24h = pair.volume?.h24 || 0;
+      const liquidity = pair.liquidity?.usd || 0;
+      const mcap = price * 1_000_000_000; // 1B Supply (bei den meisten Pump.fun Tokens)
 
-    if (data.success && data.data) {
-      const d = data.data;
-
-      document.getElementById('price').textContent   = `$${Number(d.price || 0).toFixed(9)}`;
-      document.getElementById('change').textContent  = `${d.priceChange24hPercent > 0 ? '+' : ''}${d.priceChange24hPercent?.toFixed(2) || '0.00'}%`;
-      document.getElementById('change').className    = d.priceChange24hPercent > 0 ? 'positive' : 'negative';
-      document.getElementById('holders').textContent = Number(d.holder || 0).toLocaleString();
-      document.getElementById('volume').textContent  = `$${Math.round(d.volume24h || 0).toLocaleString()}`;
-      document.getElementById('mcap').textContent    = `$${Math.round(d.mc || 0).toLocaleString()}`;
-    } else {
-      console.log("Birdeye noch nicht indexiert – warte 5-10 Min");
+      document.getElementById('price').textContent = `$${price.toFixed(9)}`;
+      document.getElementById('change').textContent = `${priceChange24h > 0 ? '+' : ''}${priceChange24h.toFixed(2)}%`;
+      document.getElementById('change').className = priceChange24h > 0 ? 'positive' : 'negative';
+      document.getElementById('volume').textContent = `$${Math.round(volume24h).toLocaleString()}`;
+      document.getElementById('mcap').textContent = `$${Math.round(mcap).toLocaleString()}`;
+      
+      // Holders gibt Dexscreener nicht → wir lassen es leer oder setzen manuell später
+      document.getElementById('holders').textContent = "soon";
     }
   } catch (e) {
-    console.log("API-Fehler:", e);
+    console.log("Noch kein Trade – warte auf ersten Käufer");
   }
 }
 
-// Update alle 12 Sekunden + sofort starten
+// Update alle 10 Sekunden
 updateTicker();
-setInterval(updateTicker, 12000);
+setInterval(updateTicker, 10000);
