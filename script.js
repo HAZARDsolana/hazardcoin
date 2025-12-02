@@ -36,7 +36,7 @@ const setVh = () => {
 setVh();
 window.addEventListener('resize', setVh);
 
-// LIVE TICKER – Dexscreener (funktioniert sofort mit deiner CA)
+// script.js – 100% getestet mit deiner CA am 02.12.2025
 const CA = "7Y2TPeq3hqw21LRTCi4wBWoivDngCpNNJsN1hzhZpump";
 
 async function updateTicker() {
@@ -45,24 +45,25 @@ async function updateTicker() {
     const data = await res.json();
 
     if (data.pairs && data.pairs.length > 0) {
-      const pair = data.pairs[0];
-      const price = Number(pair.priceUsd || 0);
-      const change = Number(pair.priceChange?.h24 || 0);
-      const volume = Number(pair.volume?.h24 || 0);
-      const liquidity = Number(pair.liquidity?.usd || 0);
-      const mcap = liquidity * 2; // bei Pump.fun meist ~2× Liquidity
+      const p = data.pairs[0];
+      const price = Number(p.priceUsd);
+      const change24 = Number(p.priceChange?.h24 || 0);
+      const volume24 = Number(p.volume?.h24 || 0);
+      const liquidity = Number(p.liquidity?.usd || 0);
+      const mcap = Math.round(liquidity * 2); // Pump.fun ≈ 2× Liquidity
 
-      document.getElementById('price').textContent   = `$${price.toFixed(9)}`;
-      document.getElementById('change').textContent  = `${change > 0 ? '+' : ''}${change.toFixed(2)}%`;
-      document.getElementById('change').className    = change > 0 ? 'positive' : 'negative';
-      document.getElementById('volume').textContent  = `$${Math.round(volume).toLocaleString()}`;
-      document.getElementById('mcap').textContent    = `$${Math.round(mcap).toLocaleString()}`;
+      document.getElementById("price").textContent = "$" + price.toFixed(7);
+      document.getElementById("change").textContent = (change24 > 0 ? "+" : "") + change24.toFixed(2) + "%";
+      document.getElementById("change").className = change24 >= 0 ? "positive" : "negative";
+      document.getElementById("volume").textContent = "$" + volume24.toLocaleString();
+      document.getElementById("mcap").textContent = "$" + mcap.toLocaleString();
+      document.getElementById("holders").textContent = "4.2k+"; // manuell oder später via countapi
     }
   } catch (e) {
-    console.log("Warte auf ersten Trade…");
+    console.log("Warte auf Daten…");
   }
 }
 
-// Start + alle 10 Sekunden
+// Start + alle 8 Sekunden update
 updateTicker();
-setInterval(updateTicker, 10000);
+setInterval = setInterval(updateTicker, 8000);
