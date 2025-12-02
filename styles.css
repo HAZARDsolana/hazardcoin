@@ -1,3 +1,49 @@
+/* HAZZARD MOVING DARK FOG – ultra lightweight */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, #000 70%),
+              repeating-linear-gradient(0deg, 
+                transparent, 
+                transparent 20px, 
+                rgba(20,0,0,0.8) 20px, 
+                rgba(20,0,0,0.8) 40px),
+              repeating-linear-gradient(90deg, 
+                rgba(30,0,0,0.3), 
+                rgba(10,0,0,0.4) 10px, 
+                transparent 30px);
+  background-size: 100% 100%, 80px 100%, 120px 100%;
+  pointer-events: none;
+  z-index: -1;
+  animation: fog 40s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes fog {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(80px, -80px) rotate(2deg); }
+}
+
+/* Optional: noch mehr Tiefe mit zweiter Ebene */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(80,0,0,0.3) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+  animation: pulseFog 25s ease-in-out infinite;
+}
+
+@keyframes pulseFog {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.8; }
+}
+
 :root{
   --gold:#d4af37;
   --blood:#b30000;
