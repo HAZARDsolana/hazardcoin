@@ -190,3 +190,16 @@ footer span{
 @media (max-width:480px){.hero-skull{width:220px;height:220px;border-width:4px}}
 @media (max-width:360px){.hero-skull{width:190px;height:190px}}
 @media (prefers-reduced-motion:reduce){*{animation:none !important}}
+
+/* FIX: Kein roter/grauer Overscroll mehr auf Mobile */
+html {
+  background: #000;               /* zwingt den Body-Hintergrund auch in den Overscroll-Bereich */
+  height: 100%;
+  overflow: hidden;               /* verhindert das native Pull-to-Refresh-Gummiband auf iOS */
+}
+
+body {
+  height: 100%;
+  overflow-y: auto;               /* erlaubt normales Scrollen innerhalb der Seite */
+  -webkit-overflow-scrolling: touch; /* butterweiches Scrollen auf iOS */
+}
