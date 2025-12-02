@@ -246,3 +246,40 @@ body {
   overflow-y: auto;               /* erlaubt normales Scrollen innerhalb der Seite */
   -webkit-overflow-scrolling: touch; /* butterweiches Scrollen auf iOS */
 }
+/* LIVE TICKER – fixiert oben */
+.ticker-bar{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--gold);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  z-index: 9999;
+  box-shadow: 0 4px 20px rgba(212,175,55,0.3);
+}
+.ticker-item{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ccc;
+}
+.ticker-item .label{
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.ticker-item .value{
+  color: #fff;
+  font-weight: 700;
+}
+#change.positive{ color: #00ff00; }
+#change.negative{ color: #ff0066; }
+
+/* Abstand für den Rest der Seite */
+body{ padding-top: 68px; } /* Höhe des Tickers */
