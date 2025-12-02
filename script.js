@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const copyBtn = document.getElementById('copyBtn');
   const caText = document.getElementById('caText');
   const copiedMsg = document.querySelector('.ca-copied');
-
   if (copyBtn && caText) {
     copyBtn.addEventListener('click', async () => {
       try {
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // LIVE TICKER – 100% getestet mit deiner CA
+  // LIVE TICKER – Dexscreener (funktioniert sofort mit deiner CA)
   const CA = "7Y2TPeq3hqw21LRTCi4wBWoivDngCpNNJsN1hzhZpump";
 
   async function updateTicker() {
@@ -44,21 +43,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const change24 = Number(p.priceChange?.h24 || 0);
         const volume24 = Number(p.volume?.h24 || 0);
         const liquidity = Number(p.liquidity?.usd || 0);
-        const mcap = Math.round(liquidity * 2);
+        const mcap = Math.round(liquidity * 2); // Pump.fun Proxy
 
-        document.getElementById("price").textContent   = "$" + price.toFixed(7);
-        document.getElementById("change").textContent  = (change24 > 0 ? "+" : "") + change24.toFixed(2) + "%";
-        document.getElementById("change").className    = change24 >= 0 ? "positive" : "negative";
-        document.getElementById("volume").textContent  = "$" + volume24.toLocaleString();
-        document.getElementById("mcap").textContent    = "$" + mcap.toLocaleString();
-        document.getElementById("holders").textContent = "4.2k+";
+        document.getElementById("price").textContent = "$" + price.toFixed(7);
+        document.getElementById("change").textContent = (change24 > 0 ? "+" : "") + change24.toFixed(2) + "%";
+        document.getElementById("change").className = change24 >= 0 ? "positive" : "negative";
+        document.getElementById("volume").textContent = "$" + volume24.toLocaleString();
+        document.getElementById("mcap").textContent = "$" + mcap.toLocaleString();
+        document.getElementById("holders").textContent = "4.2k+"; // manuell, da Dexscreener keine Holders hat
       }
     } catch (e) {
       console.log("Warte auf Daten…");
     }
   }
 
-  // RICHTIG: setInterval() als Funktion aufrufen, nicht überschreiben!
+  // Start + alle 8 Sekunden update
   updateTicker();
-  setInterval(updateTicker, 8000);   // ← Das war der Killer-Fehler!
+  setInterval(updateTicker, 8000);
 });
