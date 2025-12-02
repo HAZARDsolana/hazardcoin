@@ -1,88 +1,63 @@
-/* ============== DÜSTERER BEWEGLICHER NEBEL – SOFORT SICHTBAR ============== */
-body {
-  margin: 0;
-  padding: 0;
-  background: #000;
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* Haupt-Nebel-Ebene */
-body::before {
-  content: "";
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: 
-    radial-gradient(circle at 40% 60%, rgba(80,0,0,0.6) 0%, transparent 40%),
-    radial-gradient(circle at 70% 30%, rgba(100,0,0,0.4) 0%, transparent 50%),
-    repeating-linear-gradient(45deg, 
-      transparent, 
-      transparent 30px, 
-      rgba(30,0,0,0.3) 30px, 
-      rgba(30,0,0,0.3) 60px),
-    repeating-linear-gradient(-45deg, 
-      transparent, 
-      transparent 40px, 
-      rgba(20,0,0,0.25) 40px, 
-      rgba(20,0,0,0.25) 80px);
-  background-size: 200% 200%, 150% 150%, 120px 120px, 160px 160px;
-  pointer-events: none;
-  z-index: -2;
-  animation: slowFog 60s linear infinite;
-  opacity: 0.85;
-}
-
-/* Leichtes Pulsieren + langsames Driften */
-@keyframes slowFog {
-  0%   { transform: translate(0, 0) rotate(0deg); }
-  100% { transform: translate(100px, -100px) rotate(3deg); }
-}
-
-/* Zweite Ebene für mehr Tiefe (roter Schimmer) */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(120,0,0,0.15) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: -1;
-  animation: pulseRed 20s ease-in-out infinite;
-}
-
-@keyframes pulseRed {
-  0%, 100% { opacity: 0.2; }
-  50%      { opacity: 0.5; }
-}
-
-/* Dein bisheriger radial-gradient als leichte Überlagerung */
-.hero {
-  position: relative;
-  z-index: 1;
-  background: radial-gradient(circle at center, rgba(30,0,0,0.4), transparent 70%);
-}
-
 :root{
   --gold:#d4af37;
   --blood:#b30000;
   --dark:#000;
+  --bone:#f8f8f8;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+
+/* ============== GRUNDLAGE + SICHTBARER NEBEL ============== */
 html,body{
-  background:var(--dark);
+  background:#000;
   color:#fff;
   font-family:'Cinzel',serif;
   min-height:100vh;
   min-height:calc(var(--vh,1vh)*100);
   overflow-x:hidden;
-  display:flex;
-  flex-direction:column;
+  position:relative;
 }
 
-/* HERO */
+/* NEBEL – Haupt-Ebene (deutlich sichtbar) */
+body::before{
+  content:"";
+  position:fixed;
+  top:-50%; left:-50%;
+  width:200%; height:200%;
+  background:
+    radial-gradient(circle at 30% 70%, rgba(120,0,0,0.5) 0%, transparent 45%),
+    radial-gradient(circle at 70% 40%, rgba(180,0,0,0.4) 0%, transparent 50%),
+    repeating-linear-gradient(45deg, transparent 0px, rgba(40,0,0,0.4) 40px, transparent 80px),
+    repeating-linear-gradient(-45deg, transparent 0px, rgba(30,0,0,0.35) 50px, transparent 100px);
+  background-size:180% 180%, 160% 160%, 140px 140px, 180px 180px;
+  pointer-events:none;
+  z-index:-2;
+  animation:slowFog 80s linear infinite;
+  opacity:0.9;
+}
+@keyframes slowFog{
+  0%{transform:translate(0,0) rotate(0deg);}
+  100%{transform:translate(120px,-120px) rotate(4deg);}
+}
+
+/* Pulsierender roter Schimmer */
+body::after{
+  content:"";
+  position:fixed;
+  top:0; left:0; right:0; bottom:0;
+  background:radial-gradient(circle at 50% 50%, rgba(139,0,0,0.25) 0%, transparent 70%);
+  pointer-events:none;
+  z-index:-1;
+  animation:pulseRed 18s ease-in-out infinite;
+}
+@keyframes pulseRed{
+  0%,100%{opacity:0.15;}
+  50%{opacity:0.45;}
+}
+
+/* ============== HERO ============== */
 .hero{
+  position:relative;
+  z-index:1;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -91,12 +66,11 @@ html,body{
   gap:36px;
   min-height:100vh;
   min-height:calc(var(--vh,1vh)*100);
-  background:radial-gradient(circle at center,rgba(30,0,0,0.4),var(--dark));
   padding:20px;
-  flex:1;
+  background:radial-gradient(circle at center,rgba(30,0,0,0.4),transparent 70%);
 }
 
-/* SKULL + TITEL + RAHMEN wie vorher */
+/* SKULL */
 .hero-skull{
   width:320px;height:320px;max-width:68vw;border-radius:50%;object-fit:cover;
   border:5px solid var(--gold);
@@ -105,6 +79,8 @@ html,body{
   animation:float 4s ease-in-out infinite;
 }
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* TITEL */
 h1{
   font-size:clamp(60px,13vw,140px);
   letter-spacing:10px;
@@ -115,6 +91,8 @@ h1{
   from{text-shadow:0 0 30px var(--blood)}
   to{text-shadow:0 0 60px var(--gold),0 0 90px var(--gold)}
 }
+
+/* TEXT-Rahmen */
 .text-frame,.ca-box{
   background:rgba(20,0,0,0.6);
   border:2px solid var(--gold);
@@ -127,15 +105,17 @@ h1{
   animation:float 6s ease-in-out infinite;
 }
 .frame-content{
-  font-size: clamp(15px, 3vw, 19px);   /* noch einen Tick kleiner */
-  line-height: 1.8;
-  letter-spacing: 0.5px;
-  max-width: 720px;
-  margin: 0 auto;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  font-size:clamp(15px,2.8vw,18px);
+  line-height:1.8;
+  letter-spacing:0.5px;
+  max-width:720px;
+  margin:0 auto;
+  text-shadow:0 1px 3px rgba(0,0,0,0.8);
 }
 .teaser-frame .frame-content{font-weight:400;opacity:0.95;}
 .subtitle{color:var(--gold);font-size:clamp(19px,4vw,28px);font-weight:700;}
+
+/* TAGLINE */
 .tagline{
   margin-top:40px;
   font-size:clamp(22px,5vw,40px);
@@ -145,78 +125,68 @@ h1{
 }
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
 
-/* CA + SOCIAL wie vorher (leicht gekürzt) */
-.ca-container,.social-only{margin-top:50px;animation:fadeIn 1.5s ease-out forwards;}
+/* EXCHANGE BUTTONS */
+.exchange-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:24px;
+  justify-content:center;
+  margin:50px 0;
+}
+.exchange-btn{
+  width:260px;
+  height:90px;
+  border:2px solid var(--gold);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 0 30px rgba(212,175,55,0.4);
+  transition:all .4s;
+  animation:float 6s ease-in-out infinite;
+}
+.exchange-btn:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 50px rgba(212,175,55,0.7);
+}
+.exchange-btn img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+  padding:8px;
+}
+
+/* CONTRACT ADDRESS */
+.ca-container{margin-top:50px;animation:fadeIn 1.5s ease-out forwards;}
 .ca-label{font-size:clamp(14px,2.5vw,18px);color:var(--gold);letter-spacing:4px;margin-bottom:10px;opacity:0.9;}
 .ca-address{display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,0.6);padding:14px 18px;border-radius:8px;border:1px solid rgba(212,175,55,0.3);font-family:'Courier New',monospace;font-size:clamp(14px,2.8vw,18px);color:#fff;word-break:break-all;gap:12px;}
 #copyBtn{background:none;border:none;color:var(--gold);cursor:pointer;padding:6px;border-radius:6px;transition:all .3s;}
 #copyBtn:hover{background:var(--gold);color:#000;transform:scale(1.1);}
 .ca-copied{margin-top:12px;font-size:14px;color:var(--gold);opacity:0;text-align:center;transition:opacity .4s;}
 .ca-copied.show{opacity:1;}
-.links-container{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;max-width:90vw;}
-.link-box{display:flex;align-items:center;gap:12px;background:rgba(20,0,0,0.6);border:2px solid var(--gold);border-radius:12px;padding:16px 28px;color:#fff;text-decoration:none;font-size:clamp(16px,3.5vw,22px);backdrop-filter:blur(8px);box-shadow:0 0 30px rgba(212,175,55,0.3);transition:all .3s ease;animation:float 6s ease-in-out infinite;min-width:200px;justify-content:center;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* SOCIAL LINKS */
+.links-container{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;max-width:90vw;margin:50px 0;}
+.link-box{display:flex;align-items:center;gap:12px;background:rgba(20,0,0,0.6);border:2px solid var(--gold);border-radius:12px;padding:16px 28px;color:#fff;text-decoration:none;font-size:clamp(16px,3.5vw,22px);backdrop-filter:blur(8px);box-shadow:0 0 30px rgba(212,175,55,0.3);transition:all .3s;animation:float 6s ease-in-out infinite;min-width:200px;justify-content:center;}
 .link-box:hover{background:var(--gold);color:#000;transform:translateY(-4px);box-shadow:0 0 50px rgba(212,175,55,0.6);}
 .link-box svg{width:28px;height:28px;filter:drop-shadow(0 0 10px var(--gold));}
 .link-box:hover svg{filter:drop-shadow(0 0 15px #000);}
 
-/* NEU: LISTED ON EXCHANGES */
-.listed-section{
-  margin: 60px 0 40px;
-  animation: fadeIn 1.5s ease-out forwards;
-}
-.listed-title{
-  font-size: clamp(20px, 5vw, 32px);
-  color: var(--gold);
-  margin-bottom: 30px;
-  text-shadow: 0 0 20px rgba(212,175,55,0.6);
-}
-.exchange-buttons{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  justify-content: center;
-}
-.exchange-btn{
-  display: block;
-  width: 260px;
-  height: 90px;
-  border: 2px solid var(--gold);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 0 30px rgba(212,175,55,0.4);
-  transition: all 0.4s ease;
-  animation: float 6s ease-in-out infinite;
-}
-.exchange-btn:hover{
-  transform: translateY(-6px);
-  box-shadow: 0 0 50px rgba(212,175,55,0.7);
-  border-color: #fff;
-}
-.exchange-btn img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background: #000;
-  padding: 8px;
-}
-
-/* FOOTER – jetzt nicht mehr fixed */
+/* FOOTER */
 footer{
-  padding: 60px 20px 40px;
+  padding:40px 20px;
   text-align:center;
-  background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  font-size:14px;
+  opacity:0.7;
 }
 footer span{
-  font-size: 14px;
-  opacity: 0.7;
-  background: rgba(0,0,0,0.8);
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: 1px solid rgba(212,175,55,0.2);
+  background:rgba(0,0,0,0.8);
+  padding:10px 20px;
+  border-radius:10px;
+  border:1px solid rgba(212,175,55,0.2);
 }
 
 /* Mobile + Animationen */
 @media (max-width:480px){.hero-skull{width:220px;height:220px;border-width:4px}}
 @media (max-width:360px){.hero-skull{width:190px;height:190px}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @media (prefers-reduced-motion:reduce){*{animation:none !important}}
