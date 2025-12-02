@@ -246,41 +246,41 @@ body {
   overflow-y: auto;               /* erlaubt normales Scrollen innerhalb der Seite */
   -webkit-overflow-scrolling: touch; /* butterweiches Scrollen auf iOS */
 }
-/* LIVE STATS BLOCK – groß, zentral, brutal geil */
+/* LIVE STATS BLOCK – zentral unter dem Skull */
 .stats-container{
-  margin: 50px 0;
+  margin: 50px 0 30px;
   animation: fadeIn 2s ease-out;
 }
 .stats-grid{
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 20px;
   justify-content: center;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px;
 }
 .stat-item{
-  background: rgba(20,0,0,0.7);
+  background: rgba(20,0,0,0.75);
   border: 2px solid var(--gold);
   border-radius: 16px;
-  padding: 18px 28px;
-  min-width: 160px;
+  padding: 18px 32px;
+  min-width: 150px;
   text-align: center;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 40px rgba(212,175,55,0.4);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 40px rgba(212,175,55,0.35);
   animation: float 6s ease-in-out infinite;
 }
 .stat-label{
   display: block;
   font-size: 13px;
-  color: #aaa;
+  color: #bbb;
   letter-spacing: 2px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   text-transform: uppercase;
 }
 .stat-value{
-  font-size: clamp(20px, 5vw, 32px);
+  font-size: clamp(22px, 5vw, 36px);
   font-weight: 700;
   color: var(--gold);
   text-shadow: 0 0 20px var(--gold);
