@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>HAZARD - Powered by the Dark Power on Solana</title>
-  
+ 
   <!-- FAVICONS – ALLE GERÄTE -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -14,120 +14,70 @@
   <link rel="shortcut icon" href="/favicon.ico">
   <meta name="msapplication-TileColor" content="#000000">
   <meta name="theme-color" content="#000000">
-
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
- 
   <div class="hero">
     <img src="images/skull_a.png" alt="HAZZARD Skull" class="hero-skull">
     <h1>HAZARD</h1>
+
+    <!-- FAIR LAUNCH BADGE – Anti-Rug-Signal -->
+    <div class="fair-badge">
+      <span>✅ FAIR LAUNCH ON PUMP.FUN</span><br>
+      <small>No presale • No team tokens • Liquidity auto-burned • Ownership renounced</small>
+    </div>
+
     <div class="text-frame">
       <div class="frame-content subtitle">Powered by the Dark Power on Solana</div>
     </div>
-    <!-- LIVE TICKER BLOCK – ZENTRAL UNTER DEM SKULL -->
+
+    <!-- LIVE TICKER – ZENTRAL, mit Target-Zahlen vor Launch -->
     <div class="stats-container">
       <div class="stats-grid">
         <div class="stat-item">
-          <span class="stat-label">Price</span>
-          <span class="stat-value" id="price">$0.000000</span>
+          <span class="stat-label">Launch Target</span>
+          <span class="stat-value" id="countdown">Soon</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">24h Change</span>
-          <span class="stat-value" id="change">0.00%</span>
+          <span class="stat-label">Holders Target</span>
+          <span class="stat-value">10k+</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">Holders</span>
-          <span class="stat-value" id="holders">soon</span>
+          <span class="stat-label">Volume Target</span>
+          <span class="stat-value">$5M+</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">Volume 24h</span>
-          <span class="stat-value" id="volume">$0</span>
+          <span class="stat-label">Market Cap Target</span>
+          <span class="stat-value">$42M+</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">Market Cap</span>
-          <span class="stat-value" id="mcap">$0</span>
+          <span class="stat-label">Telegram Members</span>
+          <span class="stat-value" id="tg-count">Join now</span>
         </div>
       </div>
     </div>
-    
-<!-- Contract Address -->
-    <div class="ca-container">
-      <div class="ca-box">
-        <p class="ca-label">Contract Address</p>
-        <div class="ca-address">
-          <span id="caText">Coming Soon</span>
-          <button id="copyBtn" title="Copy Address">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-              <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-            </svg>
-          </button>
-        </div>
-        <p class="ca-copied">Copied!</p>
-      </div>
-    </div>
-     <div class="text-frame">
-      <div class="frame-content subtitle">$HAZARD: Where every decision is your own</div>
-    </div>
+
     <div class="text-frame teaser-frame">
       <div class="frame-content">
-        $HAZARD is forged in darkness a fair, community-driven<br> 
-        Solana token.<br>
-        No insiders, no team wallets, no hidden advantages. <br><br>
-        Here, nothing is promised. Nothing is guaranteed. You choose your entry. You choose your exit. Your gains and losses belong only to you.<br><br>
-        $HAZARD stands for risk, freedom, and pure adrenaline the raw edge of crypto where you rely on instinct.<br>
-        If you enter, you accept the law of the skull:<br>
-        Total self-responsibility, No protection, No excuses.<br><br>
-        $HAZARD. 100% community.🖤<br>
-        0% guarantees. Only the game.💀<br>
+        $HAZARD is forged in darkness — a 100% fair-launched Solana memecoin.<br>
+        No presale. No team tokens. No insiders. Liquidity burned at launch.<br><br>
+        This is pure crypto chaos: high risk, high reward, zero safety net.<br>
+        You enter on your own terms. You exit on your own terms.<br><br>
+        We promise nothing — except a level playing field and a locked battlefield.<br>
+        The skull doesn't lie. The skull doesn't forgive.<br>
+        But the skull never cheats.<br><br>
+        Fair launch incoming. Be ready.<br>
+        💀 $HAZARD — 100% community. 0% bullshit.
       </div>
     </div>
 
-    <p class="tagline">Hazard is listed on crypto exchanges</p>
-
-    <!-- EXCHANGE LOGO BUTTONS -->
-    <div class="exchange-buttons">
-      <a href="#" class="exchange-btn" target="_blank">
-        <img src="images/Pumpfun.jpg" alt="Pump.fun">
-      </a>
-      <a href="#" class="exchange-btn" target="_blank">
-        <img src="images/Dexscreener.jpg" alt="Dexscreener">
-      </a>
-      <a href="#" class="exchange-btn" target="_blank">
-        <img src="images/Solscan.jpg" alt="Solscan">
-      </a>
-    </div>
-
-    
-    <!-- BUY BUTTON -->
-    <div class="buy-container">
-      <a href="https://jup.ag/swap/SOL-HAZARDCA" target="_blank" class="buy-btn">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-        </svg>
-        BUY $HAZARD ON RAYDIUM
-      </a>
-      <p class="buy-info">via Jupiter Aggregator → best price</p>
-    </div>
-    
-    <!-- SOCIAL LINKS -->
-    <div class="links-container">
-      <a href="https://x.com/hazard_solana?s=21" target="_blank" class="link-box">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        <span>Twitter</span>
-      </a>
-      <a href="https://t.me/hazardcoinofficial" target="_blank" class="link-box">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 11.944 0zm4.962 9.73l-1.42 6.696c-.104.487-.375.607-.775.378l-2.16-1.59-1.04.998c-.115.112-.21.205-.43.205l.155-2.188 4.004-3.835c.174-.157-.038-.244-.27-.087l-4.946 3.116-1.905-.596c-.414-.129-.424-.413.086-.608l7.904-3.043c.348-.13.654.084.65.533z"/></svg>
-        <span>Telegram</span>
-      </a>
-    </div>
-  </div>
-
-  <footer>
-    <span>Not financial advice - © 2025 HAZARD</span>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+    <!-- Contract Address – Coming Soon, aber fair -->
+    <div class="ca-container">
+      <div class="ca-box">
+        <p class="ca-label">Fair Launch</p>
+        <div class="ca-address">
+          <span id="caText">Coming Soon – Pump.fun</span>
+          <button id="copyBtn" title="Copy later" disabled>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V
