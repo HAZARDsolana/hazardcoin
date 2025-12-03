@@ -287,3 +287,25 @@ body {
 }
 #change.positive{ color: #00ff9d; }
 #change.negative{ color: #ff0066; }
+
+.fair-badge{
+  margin: 30px auto;
+  text-align: center;
+  font-size: 18px;
+  color: var(--gold);
+  text-shadow: 0 0 20px var(--gold);
+}
+.fair-badge small{
+  font-size: 14px;
+  color: #aaa;
+  display: block;
+  margin-top: 8px;
+}
+.buy-btn.disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.ca-box.coming-soon{
+  text-align: center;
+}
