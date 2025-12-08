@@ -12,6 +12,21 @@
   <meta name="theme-color" content="#000000">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Mobile-Fix für CA-Overflow */
+    .stat-value.ca-value {
+      word-break: break-all;
+      overflow-wrap: break-word;
+      max-width: 100%;
+      font-size: 14px;
+    }
+    @media (max-width: 768px) {
+      .stat-value.ca-value {
+        font-size: 12px;
+        line-height: 1.2;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="hero">
