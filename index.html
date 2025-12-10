@@ -52,14 +52,31 @@
     <div class="text-frame">
       <div class="frame-content subtitle">Powered by the Dark Power on Solana</div>
     </div>
-    <!-- CONTRACT ADDRESS – fixed Version -->
-    <div class="ca-container">
-      <div class="ca-box coming-soon">
-        <p class="ca-label">Contract Address</p>
-        <p class="ca-value" style="font-size:20px; color:var(--gold); margin:10px 0;">2GowzeaqsZsiindBjteBQxbK9Tyenf4s9vUHGW1wpump</p>
-        <small>Pump.fun fair launch • Auto-burned LP • Renounced</small>
-      </div>
+    <!-- CONTRACT ADDRESS – mit Copy-Button -->
+<div class="ca-container">
+  <div class="ca-box">
+    <p class="ca-label">Contract Address</p>
+    <div style="display:flex; align-items:center; gap:12px; margin:15px 0; flex-wrap:wrap;">
+      <span style="font-size:18px; color:var(--gold); word-break:break-all; line-height:1.4;">
+        2GowzeaqsZsiindBjteBQxbK9Tyenf4s9vUHGW1wpump
+      </span>
+      <button onclick="copyCA()" class="copy-btn" style="background:var(--gold); color:black; border:none; padding:8px 14px; border-radius:6px; cursor:pointer; font-weight:bold;">
+        COPY
+      </button>
+      <span id="copyFeedback" style="color:var(--gold); font-size:14px; opacity:0;">Copied!</span>
     </div>
+    <small>Pump.fun fair launch • Auto-burned LP • Renounced</small>
+  </div>
+</div>
+
+<script>
+function copyCA() {
+  navigator.clipboard.writeText("2GowzeaqsZsiindBjteBQxbK9Tyenf4s9vUHGW1wpump");
+  const feedback = document.getElementById("copyFeedback");
+  feedback.style.opacity = "1";
+  setTimeout(() => feedback.style.opacity = "0", 2000);
+}
+</script>
    
     <div class="text-frame teaser-frame">
       <div class="frame-content">
