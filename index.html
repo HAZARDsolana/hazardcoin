@@ -27,7 +27,29 @@
       }
     }
   </style>
-  
+  <!-- ROADMAP & COPY BUTTON CSS -->
+  <style>
+    .roadmap-container { margin: 60px 20px; text-align: center; }
+    .roadmap-title { font-size: 36px; color: var(--gold); margin-bottom: 10px; }
+    .roadmap-subtitle { color: #aaa; font-size: 18px; margin-bottom: 40px; }
+    .phase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 40px 0; }
+    .phase-box { background: rgba(0,0,0,0.8); border: 1px solid var(--gold); border-radius: 8px; padding: 20px; }
+    .phase-number { font-size: 42px; color: var(--gold); margin: 0; opacity: 0.3; }
+    .phase-name { font-size: 22px; color: var(--gold); margin: 10px 0; }
+    .phase-list { text-align: left; color: #ccc; line-height: 1.8; font-size: 15px; margin: 15px 0 0; padding-left: 20px; }
+    .phase-list li { margin: 8px 0; }
+    .roadmap-footer { margin-top: 50px; font-size: 18px; color: var(--gold); line-height: 1.6; }
+    .ca-copy { display: flex; align-items: center; gap: 12px; margin: 15px 0; flex-wrap: wrap; }
+    .copy-btn { background: var(--gold); color: black; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    .copy-btn:hover { opacity: 0.8; }
+    #copyFeedback { color: var(--gold); font-size: 14px; opacity: 0; }
+    @media (max-width: 768px) {
+      .roadmap-title { font-size: 28px; }
+      .phase-number { font-size: 32px; }
+      .phase-name { font-size: 20px; }
+      .ca-copy { font-size: 12px; }
+    }
+  </style>
 </head>
 <body>
   <div class="hero">
@@ -75,7 +97,69 @@ function copyCA() {
         HAZARD — 100% community. 0% bullshit.
       </div>
     </div>
+<!-- ROADMAP – hier ist sie, brutal schön -->
+    <div class="roadmap-container">
+      <h2 class="roadmap-title">HAZARD ROADMAP</h2>
+      <p class="roadmap-subtitle">The skull doesn’t follow plans. It burns them.</p>
 
+      <div class="phase-grid">
+        <div class="phase-box">
+          <h3 class="phase-number">01</h3>
+          <h4 class="phase-name">Launch & Foundation</h4>
+          <ul class="phase-list">
+            <li>Token launch on Pump.fun</li>
+            <li>Community setup (Telegram, X, Website)</li>
+            <li>Branding & basic utilities outline</li>
+            <li>Early marketing push</li>
+            <li>First wave of holders</li>
+            <li>Transparency updates & dev AMA</li>
+          </ul>
+        </div>
+
+        <div class="phase-box">
+          <h3 class="phase-number">02</h3>
+          <h4 class="phase-name">Growth & Awareness</h4>
+          <ul class="phase-list">
+            <li>Stronger marketing campaigns</li>
+            <li>Shilling network expansion</li>
+            <li>Partnerships with small influencers</li>
+            <li>Community contests & engagement</li>
+            <li>Dexscreener, Birdeye listing</li>
+            <li>Chart stabilization + organic growth</li>
+          </ul>
+        </div>
+
+        <div class="phase-box">
+          <h3 class="phase-number">03</h3>
+          <h4 class="phase-name">Utility & Ecosystem</h4>
+          <ul class="phase-list">
+            <li>Hazard Litepaper release</li>
+            <li>First utility announcement</li>
+            <li>Tool prototype (dashboard, alerts, mini dApp)</li>
+            <li>Community rewards system</li>
+            <li>More partnerships & collabs</li>
+          </ul>
+        </div>
+
+        <div class="phase-box">
+          <h3 class="phase-number">04</h3>
+          <h4 class="phase-name">Expansion & Long-Term Vision</h4>
+          <ul class="phase-list">
+            <li>Full utility rollout</li>
+            <li>Big influencer campaigns</li>
+            <li>CEX listing applications (Tier 3–4)</li>
+            <li>Global community growth</li>
+            <li>Staking / NFT / Booster (community vote)</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="roadmap-footer">
+        This is not a promise.<br>
+        This is a war plan.<br><br>
+        Survive it — or become part of the ashes.
+      </p>
+    </div>
 
     <!-- BUY BUTTON -->
     <div class="buy-container">
